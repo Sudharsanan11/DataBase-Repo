@@ -1,0 +1,166 @@
+1. A new player has joined the tournament. Write an SQL query to add the following details to the player table.
+mysql> use sudharsanan;
+Database changed
+mysql> insert into player(name,age,score)values('Raj',26,120);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select *from player;
++--------+------+-------+
+| name   | age  | score |
++--------+------+-------+
+| Suresh |   21 |    70 |
+| Raj    |   26 |   120 |
++--------+------+-------+
+2 rows in set (0.00 sec)
+
+2. Three new players have joined the tournament. Write a SQL query to add the following details of players to the player table.
+mysql> insert into player(name,age,score)values('Ram',28,125);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into player(name,age,score)values('Charan',25,173);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into player(name,age,score)values('Ravan',20,152);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select *from player;
++--------+------+-------+
+| name   | age  | score |
++--------+------+-------+
+| Suresh |   21 |    70 |
+| Raj    |   26 |   120 |
+| Ram    |   28 |   125 |
+| Charan |   25 |   173 |
+| Ravan  |   20 |   152 |
++--------+------+-------+
+5 rows in set (0.00 sec)
+
+3. Get all the details of the players from the player table.
+mysql> truncate table player;
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> insert into player(name,age,score)values('Ram',24,10);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into player(name,age,score)values('suresh',21,9);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select *from player;
++--------+------+-------+
+| name   | age  | score |
++--------+------+-------+
+| Ram    |   24 |    10 |
+| suresh |   21 |     9 |
++--------+------+-------+
+2 rows in set (0.00 sec) 
+4. Update the age of "Shyam" to 30 in the player table.
+mysql> insert into player(name,age,score)values('Shyam',28,120);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select *from player;
++--------+------+-------+
+| name   | age  | score |
++--------+------+-------+
+| Ram    |   24 |    10 |
+| suresh |   21 |     9 |
+| Shyam  |   28 |   120 |
++--------+------+-------+
+3 rows in set (0.00 sec)
+
+mysql> update player set age=30 where name='Shyam';
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select *from player;
++--------+------+-------+
+| name   | age  | score |
++--------+------+-------+
+| Ram    |   24 |    10 |
+| suresh |   21 |     9 |
+| Shyam  |   30 |   120 |
++--------+------+-------+
+3 rows in set (0.00 sec)
+
+5. Delete player "David" from the player table.
+mysql> insert into player(name,age,score)values('David',24,84);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select *from player;
++--------+------+-------+
+| name   | age  | score |
++--------+------+-------+
+| Ram    |   24 |    10 |
+| suresh |   21 |     9 |
+| Shyam  |   30 |   120 |
+| David  |   24 |    84 |
++--------+------+-------+
+4 rows in set (0.00 sec)
+
+mysql> delete from player where name='David';
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select *from player;
++--------+------+-------+
+| name   | age  | score |
++--------+------+-------+
+| Ram    |   24 |    10 |
+| suresh |   21 |     9 |
+| Shyam  |   30 |   120 |
++--------+------+-------+
+3 rows in set (0.00 sec)
+6. We have to store the strike_rate of player in the database. Make necessary changes to the exsiting player table to store the data.
+mysql> alter table player add strike_rate float after score;
+Query OK, 0 rows affected (0.02 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc player;
++-------------+----------+------+-----+---------+-------+
+| Field       | Type     | Null | Key | Default | Extra |
++-------------+----------+------+-----+---------+-------+
+| name        | char(50) | YES  |     | NULL    |       |
+| age         | int      | YES  |     | NULL    |       |
+| score       | int      | YES  |     | NULL    |       |
+| strike_rate | float    | YES  |     | NULL    |       |
++-------------+----------+------+-----+---------+-------+
+4 rows in set (0.00 sec)
+
+7. Get name and age of all player from the player table.
+mysql> select name,age from player;
++--------+------+
+| name   | age  |
++--------+------+
+| Ram    |   24 |
+| suresh |   21 |
+| Shyam  |   30 |
++--------+------+
+3 rows in set (0.00 sec)
+8. Rename the column name to full_name in the player table.
+mysql> alter table player change name full_name char(50);
+Query OK, 0 rows affected (0.02 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> select *from player;
++-----------+------+-------+-------------+
+| full_name | age  | score | strike_rate |
++-----------+------+-------+-------------+
+| Ram       |   24 |    10 |        NULL |
+| suresh    |   21 |     9 |        NULL |
+| Shyam     |   30 |   120 |        NULL |
++-----------+------+-------+-------------+
+3 rows in set (0.00 sec)
+9. Delete player table from the database.
+mysql> drop table player;\
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> select *from player;
+ERROR 1146 (42S02): Table 'sudharsanan.player' doesn't exist
+mysql> show tables;
++-----------------------+
+| Tables_in_sudharsanan |
++-----------------------+
+| customer              |
+| order_details         |
+| student               |
+| student_det           |
++-----------------------+
+4 rows in set (0.00 sec)

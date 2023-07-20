@@ -1,0 +1,306 @@
+1.      Create a Student Table to store name, course,m1,m2,m3,subjects:["HTML",CSS","MongoDB"],personal:{age,dob,father name,mobile number,email id,address}  of students
+
+sudharsanan> db.createCollection('Students_det')
+{ ok: 1 }
+sudharsanan> db.Students_det.insert({'Name':'Kamesh','Course':'Machatrons','M1':78,'M2':89,'M3':100,'Subjects':['HTML','CSS','MongoDB'],'Personal':{'Age':28,'DOB':new Date('1995-05-31'),'Father_name':'Subu','Mobile':9876543210,'Email':'kamesh123@gmail.com','Address':'Erode,Tamilnadu'}})
+
+ 2. Insert at least 10 documents in a student table using insertMany().
+
+sudharsanan> db.Students_det.find()
+[
+  {
+    _id: ObjectId("64af8f2d8b7565bd233096e1"),
+    Name: 'Kamesh',
+    Course: 'Machatrons',
+    M1: 78,
+    M2: 89,
+    M3: 100,
+    Subjects: [ 'HTML', 'CSS', 'MongoDB' ],
+    Personal: {
+      Age: 28,
+      DOB: ISODate("1995-05-31T00:00:00.000Z"),
+      Father_name: 'Subu',
+      Mobile: 9876543210,
+      Email: 'kamesh123@gmail.com',
+      Address: 'Erode,Tamilnadu'
+    }
+  },
+  {
+    _id: ObjectId("64afb60f8b7565bd233096e2"),
+    Name: 'Sudharsanan',
+    Course: 'ECE',
+    M1: 77,
+    M2: 88,
+    M3: 99,
+    Subjects: [ 'HTML', 'CSS', 'MongoDB' ],
+    Personal: {
+      Age: 21,
+      DOB: ISODate("1995-05-11T00:00:00.000Z"),
+      Father_name: 'Ashok',
+      Mobile: 9876543211,
+      Email: 'soctt123@gmail.com',
+      Address: 'Namakkal,Tamilnadu'
+    }
+  },
+  {
+    _id: ObjectId("64afe9598b7565bd233096e3"),
+    Name: 'Subash',
+    Course: 'CSE',
+    M1: 45,
+    M2: 67,
+    M3: 84,
+    Subjects: [ 'HTML', 'CSS', 'MongoDB' ],
+    Personal: {
+      Age: 24,
+      DOB: ISODate("1999-12-02T00:00:00.000Z"),
+      Father_name: 'Babu',
+      Mobile: 9876543212,
+      Email: 'subash123@gmail.com',
+      Address: 'Coimbatore,Tamilnadu'
+    }
+  },
+  {
+    _id: ObjectId("64afe9598b7565bd233096e4"),
+    Name: 'Ashok',
+    Course: 'CSE',
+    M1: 56,
+    M2: 62,
+    M3: 87,
+    Subjects: [ 'HTML', 'CSS', 'MongoDB' ],
+    Personal: {
+      Age: 20,
+      DOB: ISODate("2002-07-25T00:00:00.000Z"),
+      Father_name: 'Mahendra',
+      Mobile: 9876543213,
+      Email: 'ashok123@gmail.com',
+      Address: 'Coimbatore,Tamilnadu'
+    }
+  },
+  {
+    _id: ObjectId("64afe9598b7565bd233096e5"),
+    Name: 'Gabijr',
+    Course: 'IT',
+    M1: 59,
+    M2: 69,
+    M3: 79,
+    Subjects: [ 'HTML', 'CSS', 'MongoDB' ],
+    Personal: {
+      Age: 20,
+      DOB: ISODate("2002-11-17T00:00:00.000Z"),
+      Father_name: 'Gabi',
+      Mobile: 9876543213,
+      Email: 'gabi123@gmail.com',
+      Address: 'Trichy,Tamilnadu'
+    }
+  }
+]
+
+3. Find all documents in the collection of the student.
+
+sudharsanan> db.Students_det.find()
+[
+  {
+    _id: ObjectId("64af8f2d8b7565bd233096e1"),
+    Name: 'Kamesh',
+    Course: 'Machatrons',
+    M1: 78,
+    M2: 89,
+    M3: 100,
+    Subjects: [ 'HTML', 'CSS', 'MongoDB' ],
+    Personal: {
+      Age: 28,
+      DOB: ISODate("1995-05-31T00:00:00.000Z"),
+      Father_name: 'Subu',
+      Mobile: 9876543210,
+      Email: 'kamesh123@gmail.com',
+      Address: 'Erode,Tamilnadu'
+    }
+  },
+  {
+    _id: ObjectId("64afb60f8b7565bd233096e2"),
+    Name: 'Sudharsanan',
+    Course: 'ECE',
+    M1: 77,
+    M2: 88,
+    M3: 99,
+    Subjects: [ 'HTML', 'CSS', 'MongoDB' ],
+    Personal: {
+      Age: 21,
+      DOB: ISODate("1995-05-11T00:00:00.000Z"),
+      Father_name: 'Ashok',
+      Mobile: 9876543211,
+      Email: 'soctt123@gmail.com',
+      Address: 'Namakkal,Tamilnadu'
+    }
+  },
+  {
+    _id: ObjectId("64afe9598b7565bd233096e3"),
+    Name: 'Subash',
+    Course: 'CSE',
+    M1: 45,
+    M2: 67,
+    M3: 84,
+    Subjects: [ 'HTML', 'CSS', 'MongoDB' ],
+    Personal: {
+      Age: 24,
+      DOB: ISODate("1999-12-02T00:00:00.000Z"),
+      Father_name: 'Babu',
+      Mobile: 9876543212,
+      Email: 'subash123@gmail.com',
+      Address: 'Coimbatore,Tamilnadu'
+    }
+  },
+  {
+    _id: ObjectId("64afe9598b7565bd233096e4"),
+    Name: 'Ashok',
+    Course: 'CSE',
+    M1: 56,
+    M2: 62,
+    M3: 87,
+    Subjects: [ 'HTML', 'CSS', 'MongoDB' ],
+    Personal: {
+      Age: 20,
+      DOB: ISODate("2002-07-25T00:00:00.000Z"),
+      Father_name: 'Mahendra',
+      Mobile: 9876543213,
+      Email: 'ashok123@gmail.com',
+      Address: 'Coimbatore,Tamilnadu'
+    }
+  },
+  {
+    _id: ObjectId("64afe9598b7565bd233096e5"),
+    Name: 'Gabijr',
+    Course: 'IT',
+    M1: 59,
+    M2: 69,
+    M3: 79,
+    Subjects: [ 'HTML', 'CSS', 'MongoDB' ],
+    Personal: {
+      Age: 20,
+      DOB: ISODate("2002-11-17T00:00:00.000Z"),
+      Father_name: 'Gabi',
+      Mobile: 9876543213,
+      Email: 'gabi123@gmail.com',
+      Address: 'Trichy,Tamilnadu'
+    }
+  }
+]
+
+4. Find first documents in the collection of the student.
+
+sudharsanan> db.Students_det.findOne()
+{
+  _id: ObjectId("64af8f2d8b7565bd233096e1"),
+  Name: 'Kamesh',
+  Course: 'Machatrons',
+  M1: 78,
+  M2: 89,
+  M3: 100,
+  Subjects: [ 'HTML', 'CSS', 'MongoDB' ],
+  Personal: {
+    Age: 28,
+    DOB: ISODate("1995-05-31T00:00:00.000Z"),
+    Father_name: 'Subu',
+    Mobile: 9876543210,
+    Email: 'kamesh123@gmail.com',
+    Address: 'Erode,Tamilnadu'
+  }
+}
+
+5. Retrieve student's documents whose student course is B.E CSE.
+
+sudharsanan> db.Students_det.find({Course:'CSE'})
+[
+  {
+    _id: ObjectId("64afe9598b7565bd233096e3"),
+    Name: 'Subash',
+    Course: 'CSE',
+    M1: 45,
+    M2: 67,
+    M3: 84,
+    Subjects: [ 'HTML', 'CSS', 'MongoDB' ],
+    Personal: {
+      Age: 24,
+      DOB: ISODate("1999-12-02T00:00:00.000Z"),
+      Father_name: 'Babu',
+      Mobile: 9876543212,
+      Email: 'subash123@gmail.com',
+      Address: 'Coimbatore,Tamilnadu'
+    }
+  },
+  {
+    _id: ObjectId("64afe9598b7565bd233096e4"),
+    Name: 'Ashok',
+    Course: 'CSE',
+    M1: 56,
+    M2: 62,
+    M3: 87,
+    Subjects: [ 'HTML', 'CSS', 'MongoDB' ],
+    Personal: {
+      Age: 20,
+      DOB: ISODate("2002-07-25T00:00:00.000Z"),
+      Father_name: 'Mahendra',
+      Mobile: 9876543213,
+      Email: 'ashok123@gmail.com',
+      Address: 'Coimbatore,Tamilnadu'
+    }
+  }
+]
+
+6. Retrieve only student name fields with the help of projection.
+
+]
+sudharsanan> db.Students_det.find({},{Name:1,_id:0})
+[
+  { Name: 'Kamesh' },
+  { Name: 'Sudharsanan' },
+  { Name: 'Subash' },
+  { Name: 'Ashok' },
+  { Name: 'Gabijr' }
+]
+
+7. Retrieve student name, course, mobile number fields with the help of projection.
+
+sudharsanan> db.Students_det.find({},{Name:1,Course:1,'Personal.Mobile':1,_id:0})
+[
+  {
+    Name: 'Kamesh',
+    Course: 'Machatrons',
+    Personal: { Mobile: 9876543210 }
+  },
+  {
+    Name: 'Sudharsanan',
+    Course: 'ECE',
+    Personal: { Mobile: 9876543211 }
+  },
+  { Name: 'Subash', Course: 'CSE', Personal: { Mobile: 9876543212 } },
+  { Name: 'Ashok', Course: 'CSE', Personal: { Mobile: 9876543213 } },
+  { Name: 'Gabijr', Course: 'IT', Personal: { Mobile: 9876543213 } }
+]
+
+8.Retrieve only student name whose m1 is greater than 70.
+
+sudharsanan> db.Students_det.find({M1:{$gt:70}},{Name:1,_id:0})
+[ { Name: 'Kamesh' }, { Name: 'Sudharsanan' } ]
+
+9.Retrieve only student name whose m2 is less than 70.
+
+sudharsanan> db.Students_det.find({M2:{$lt:70}},{Name:1,_id:0})
+[ { Name: 'Subash' }, { Name: 'Ashok' }, { Name: 'Gabijr' } ]
+
+10.Retrieve only student name whose name equal to "Sachin".
+
+sudharsanan> db.Students_det.find({Name:{$eq:'Sudharsanan'}},{Name:1,_id:0})
+
+[ { Name: 'Sudharsanan' } ]
+
+11.Retrieve only student name whose name not equal to "Sachin".
+
+sudharsanan> db.Students_det.find({Name:{$ne:'Sudharsanan'}},{Name:1,_id:0})
+
+[
+  { Name: 'Kamesh' },
+  { Name: 'Subash' },
+  { Name: 'Ashok' },
+  { Name: 'Gabijr' }
+]

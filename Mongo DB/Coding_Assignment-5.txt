@@ -1,0 +1,319 @@
+1. To search the name as "Bala" and Course as "B.E ECE" , if the match is found update his address field otherwise add a new document consist of name bala, course B.E ECE and given address using upsert method.
+
+sudharsanan> db.std_det.updateOne({Name:'Bala'},{$set:{Roll:107,Name:'Bala',M1:56,M2:67,M3:78,DoJ:new Date('2023-06-12'),Subject:['HTML','CSS'],Personal:{age:23,Email:'bala123@gmail.com'}}},{upsert:true})
+{
+  acknowledged: true,
+  insertedId: ObjectId("64b14a9df5ccda3980d82462"),
+  matchedCount: 0,
+  modifiedCount: 0,
+  upsertedCount: 1
+}
+sudharsanan> db.std_det.find({Name:'Bala'})
+[
+  {
+    _id: ObjectId("64b14a9df5ccda3980d82462"),
+    Name: 'Bala',
+    DoJ: ISODate("2023-06-12T00:00:00.000Z"),
+    M1: 56,
+    M2: 67,
+    M3: 78,
+    Personal: { age: 23, Email: 'bala123@gmail.com' },
+    Roll: 107,
+    Subject: [ 'HTML', 'CSS' ]
+  }
+]
+
+2.To create a collections for product_details and update the price:32999.99 whose productid:103.
+
+sudharsanan> db.Product_det.findAndModify({query:{Product_id:1003},update:{$set:{'Price':32999.99}},upsert:true})
+{
+  _id: ObjectId("64b01ce88b7565bd233096eb"),
+  Product_id: 1003,
+  Product_name: 'OnePlus 11R',
+  Price: 32999.99,
+  'No.quantity': 3,
+  Company: {
+    Name: 'OnePlus',
+    Purchasedate: ISODate("2023-06-27T00:00:00.000Z")
+  }
+}
+
+3. To increment the price rate by 1500 for all the products .
+
+sudharsanan> db.Product_det.find()
+[
+  {
+    _id: ObjectId("64b013868b7565bd233096e8"),
+    Product_id: 1000,
+    Product_name: 'iphone 11',
+    Price: 50400,
+    'No.quantity': 2,
+    Company: {
+      Name: 'Apple',
+      Purchasedate: ISODate("2023-06-04T00:00:00.000Z")
+    }
+  },
+  {
+    _id: ObjectId("64b01bc68b7565bd233096e9"),
+    Product_id: 1001,
+    Product_name: 'iphone 11',
+    Price: 50400,
+    'No.quantity': 1,
+    Company: {
+      Name: 'Apple',
+      Purchasedate: ISODate("2023-06-17T00:00:00.000Z")
+    }
+  },
+  {
+    _id: ObjectId("64b01c428b7565bd233096ea"),
+    Product_id: 1002,
+    Product_name: 'Samsung S23 Ultra',
+    Price: 17500,
+    'No.quantity': 2,
+    Company: {
+      Name: 'Samsung',
+      Purchasedate: ISODate("2023-06-22T00:00:00.000Z")
+    }
+  },
+  {
+    _id: ObjectId("64b01ce88b7565bd233096eb"),
+    Product_id: 1003,
+    Product_name: 'OnePlus 11R',
+    Price: 34499.99,
+    'No.quantity': 3,
+    Company: {
+      Name: 'OnePlus',
+      Purchasedate: ISODate("2023-06-27T00:00:00.000Z")
+    }
+  },
+  {
+    _id: ObjectId("64b01eb18b7565bd233096ec"),
+    Product_id: 1004,
+    Product_name: 'iphone 14',
+    Price: 131500,
+    'No.quantity': 1,
+    Company: {
+      Name: 'Apple',
+      Purchasedate: ISODate("2023-07-02T00:00:00.000Z")
+    }
+  }
+]
+4.To update the min price among all the products to the productid:105.
+
+sudharsanan> db.Product_det.updateMany({Product_id:1004},{$min:{Price:15000}})
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+sudharsanan> db.Product_det.find({Product_id:1004})
+[
+  {
+    _id: ObjectId("64b01eb18b7565bd233096ec"),
+    Product_id: 1004,
+    Product_name: 'iphone 14',
+    Price: 15000,
+    'No.quantity': 1,
+    Company: {
+      Name: 'Apple',
+      Purchasedate: ISODate("2023-07-02T00:00:00.000Z")
+    }
+  }
+]
+
+5.To update the max price among all the products to the productid:107.
+
+sudharsanan> db.Product_det.updateMany({Product_id:1003},{$max:{Price:140000}})
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+sudharsanan> db.Product_det.find({Product_id:1003})
+[
+  {
+    _id: ObjectId("64b01ce88b7565bd233096eb"),
+    Product_id: 1003,
+    Product_name: 'OnePlus 11R',
+    Price: 140000,
+    'No.quantity': 3,
+    Company: {
+      Name: 'OnePlus',
+      Purchasedate: ISODate("2023-06-27T00:00:00.000Z")
+    }
+  }
+]
+
+6. To multiply the price rate by 3 for all the productid:105.
+
+sudharsanan> db.Product_det.updateMany({Product_id:1004},{$mul:{Price:3}})
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+sudharsanan> db.Product_det.find({Product_id:1004})
+[
+  {
+    _id: ObjectId("64b01eb18b7565bd233096ec"),
+    Product_id: 1004,
+    Product_name: 'iphone 14',
+    Price: 45000,
+    'No.quantity': 1,
+    Company: {
+      Name: 'Apple',
+      Purchasedate: ISODate("2023-07-02T00:00:00.000Z")
+    }
+  }
+]
+
+7. To unset the price field from the productid:105.
+
+
+sudharsanan> db.Product_det.updateMany({Product_id:1004},{$unset:{Price:''}})
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+sudharsanan> db.Product_det.find({Product_id:1004})
+[
+  {
+    _id: ObjectId("64b01eb18b7565bd233096ec"),
+    Product_id: 1004,
+    Product_name: 'iphone 14',
+    'No.quantity': 1,
+    Company: {
+      Name: 'Apple',
+      Purchasedate: ISODate("2023-07-02T00:00:00.000Z")
+    }
+  }
+]
+
+8.To upsert the price to the productid: 105 and fix the price as 25789.60 (insert).
+
+sudharsanan> db.Product_det.update({Product_id:1004},{$set:{Price:25789.60}},{update:true})
+DeprecationWarning: Collection.update() is deprecated. Use updateOne, updateMany, or bulkWrite.
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+sudharsanan> db.Product_det.find({Product_id:1004})
+[
+  {
+    _id: ObjectId("64b01eb18b7565bd233096ec"),
+    Product_id: 1004,
+    Product_name: 'iphone 14',
+    'No.quantity': 1,
+    Company: {
+      Name: 'Apple',
+      Purchasedate: ISODate("2023-07-02T00:00:00.000Z")
+    },
+    Price: 25789.6
+  }
+]
+
+9. To upsert the price to the productid:107 as 78000.23 (update).
+
+sudharsanan> db.Product_det.update({Product_id:1003},{$set:{Price:78000.23}},{update:true})
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+sudharsanan> db.Product_det.find({Product_id:1003})
+[
+  {
+    _id: ObjectId("64b01ce88b7565bd233096eb"),
+    Product_id: 1003,
+    Product_name: 'OnePlus 11R',
+    Price: 78000.23,
+    'No.quantity': 3,
+    Company: {
+      Name: 'OnePlus',
+      Purchasedate: ISODate("2023-06-27T00:00:00.000Z")
+    }
+  }
+]
+
+10. To rename the field productid to proid.
+
+sudharsanan> db.Product_det.updateMany({},{$rename:{'Product_id':'Proid'}})
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 5,
+  modifiedCount: 5,
+  upsertedCount: 0
+}
+sudharsanan> db.Product_det.find()
+[
+  {
+    _id: ObjectId("64b013868b7565bd233096e8"),
+    Product_name: 'iphone 11',
+    Price: 50400,
+    'No.quantity': 2,
+    Company: {
+      Name: 'Apple',
+      Purchasedate: ISODate("2023-06-04T00:00:00.000Z")
+    },
+    Proid: 1000
+  },
+  {
+    _id: ObjectId("64b01bc68b7565bd233096e9"),
+    Product_name: 'iphone 11',
+    Price: 50400,
+    'No.quantity': 1,
+    Company: {
+      Name: 'Apple',
+      Purchasedate: ISODate("2023-06-17T00:00:00.000Z")
+    },
+    Proid: 1001
+  },
+  {
+    _id: ObjectId("64b01c428b7565bd233096ea"),
+    Product_name: 'Samsung S23 Ultra',
+    Price: 17500,
+    'No.quantity': 2,
+    Company: {
+      Name: 'Samsung',
+      Purchasedate: ISODate("2023-06-22T00:00:00.000Z")
+    },
+    Proid: 1002
+  },
+  {
+    _id: ObjectId("64b01ce88b7565bd233096eb"),
+    Product_name: 'OnePlus 11R',
+    Price: 78000.23,
+    'No.quantity': 3,
+    Company: {
+      Name: 'OnePlus',
+      Purchasedate: ISODate("2023-06-27T00:00:00.000Z")
+    },
+    Proid: 1003
+  },
+  {
+    _id: ObjectId("64b01eb18b7565bd233096ec"),
+    Product_name: 'iphone 14',
+    'No.quantity': 1,
+    Company: {
+      Name: 'Apple',
+      Purchasedate: ISODate("2023-07-02T00:00:00.000Z")
+    },
+    Price: 25789.6,
+    Proid: 1004
+  }
+]

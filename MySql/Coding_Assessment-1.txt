@@ -1,0 +1,345 @@
+1.Display the list of employees who have joined the company before 30th june 80 or after 31 st dec 80
+
+mysql> select *from employee_det where doj > '1980-12-31';
++---------+----------------+-------------+------------+
+| dept_no | em_name        | desig       | doj        |
++---------+----------------+-------------+------------+
+|     101 | Kameshwar      | Manager     | 1981-02-02 |
+|     102 | Sudharsanan    | CEO         | 1981-03-05 |
+|     103 | Subhash        | Salesman    | 1981-06-21 |
+|     104 | Gabi           | Technician  | 1981-04-15 |
+|     105 | Ashok          | Developer   | 1981-03-11 |
+|     106 | Jereena        | Team Leader | 1981-09-18 |
+|     107 | Kamali         | Clerk       | 1982-01-30 |
+|     107 | Aravindh       | Ass Manager | 1981-10-09 |
+|     109 | Vijaya Ragavan | Clerk       | 1981-05-20 |
+|     110 | Manikandan     | Salesman    | 1981-07-20 |
+|     111 | Prasanth       | Developer   | 1981-04-12 |
+|     112 | Hari           | Developer   | 1981-04-12 |
+|     113 | Mithun         | Developer   | 1981-08-18 |
+|     114 | Elavarasan     | Technician  | 1981-06-10 |
++---------+----------------+-------------+------------+
+14 rows in set (0.02 sec)
+2.Display the name of the current user
+
+
+mysql> select *from employee_det;
++---------+------------------+-------------+------------+
+| dept_no | em_name          | desig       | doj        |
++---------+------------------+-------------+------------+
+|     101 | Kameshwar        | Manager     | 1981-02-02 |
+|     102 | Sudharsanan      | CEO         | 1981-03-05 |
+|     103 | Subhash          | Salesman    | 1981-06-21 |
+|     104 | Gabi             | Technician  | 1981-04-15 |
+|     105 | Ashok            | Developer   | 1981-03-11 |
+|     106 | Jereena          | Team Leader | 1981-09-18 |
+|     107 | Kamali           | Clerk       | 1982-01-30 |
+|     107 | Aravindh         | Ass Manager | 1981-10-09 |
+|     108 | Manikandaravindh | PA          | 1980-11-28 |
+|     109 | Vijaya Ragavan   | Clerk       | 1981-05-20 |
+|     110 | Manikandan       | Salesman    | 1981-07-20 |
+|     111 | Prasanth         | Developer   | 1981-04-12 |
+|     112 | Hari             | Developer   | 1981-04-12 |
+|     113 | Mithun           | Developer   | 1981-08-18 |
+|     114 | Elavarasan       | Technician  | 1981-06-10 |
++---------+------------------+-------------+------------+
+15 rows in set (0.00 sec)
+
+3.Display the names of employees working in department number 10 or 20 and working as clerks , salesman or analyst
+
+
+mysql> select *from employee_det where dept_no=10;
++---------+-------+----------------+----------+------------+
+| dept_no | em_id | em_name        | desig    | doj        |
++---------+-------+----------------+----------+------------+
+|      10 |   103 | Subhash        | Salesman | 1981-06-21 |
+|      10 |   107 | Kamali         | Clerk    | 1982-01-30 |
+|      10 |   109 | Vijaya Ragavan | Clerk    | 1981-05-20 |
+|      10 |   110 | Manikandan     | Salesman | 1981-07-20 |
+|      10 |   111 | Prasanth       | Analyst  | 1981-04-12 |
++---------+-------+----------------+----------+------------+
+5 rows in set (0.00 sec)
+
+4.Display the names of employees whose name starts with alphabet “S”
+
+mysql> select *from employee_det where em_name like 'S%';
++---------+-------+-------------+----------+------------+
+| dept_no | em_id | em_name     | desig    | doj        |
++---------+-------+-------------+----------+------------+
+|       1 |   102 | Sudharsanan | CEO      | 1981-03-05 |
+|      10 |   103 | Subhash     | Salesman | 1981-06-21 |
++---------+-------+-------------+----------+------------+
+2 rows in set (0.00 sec)
+
+5.Display employee name from employees whose name ends with alphabet N
+
+mysql> select *from employee_det where em_name like 'N%';
++---------+-------+---------+---------+------------+
+| dept_no | em_id | em_name | desig   | doj        |
++---------+-------+---------+---------+------------+
+|      10 |   121 | Nandha  | Analyst | 1981-06-10 |
++---------+-------+---------+---------+------------+
+1 row in set (0.00 sec)
+
+6.Display the names of employees whose names have second alphabet A in their names
+
+mysql> select *from employee_det where em_name like '_a%';
++---------+-------+------------------+------------+------------+
+| dept_no | em_id | em_name          | desig      | doj        |
++---------+-------+------------------+------------+------------+
+|       9 |   101 | Kameshwar        | Manager    | 1981-02-02 |
+|      13 |   104 | Gabi             | Technician | 1981-04-15 |
+|      10 |   107 | Kamali           | Clerk      | 1982-01-30 |
+|       2 |   108 | Manikandaravindh | PA         | 1980-11-28 |
+|      10 |   110 | Manikandan       | Salesman   | 1981-07-20 |
+|      15 |   112 | Hari             | Developer  | 1981-04-12 |
+|      10 |   121 | Nandha           | Analyst    | 1981-06-10 |
++---------+-------+------------------+------------+------------+
+7 rows in set (0.00 sec)
+
+7.Display the names of all tables from the current user
+
+mysql> select em_name from employee_det;
++------------------+
+| em_name          |
++------------------+
+| Kameshwar        |
+| Sudharsanan      |
+| Subhash          |
+| Gabi             |
+| Ashok            |
+| Jereena          |
+| Kamali           |
+| Aravindh         |
+| Manikandaravindh |
+| Vijaya Ragavan   |
+| Manikandan       |
+| Prasanth         |
+| Hari             |
+| Mithun           |
+| Elavarasan       |
+| Nandha           |
++------------------+
+16 rows in set (0.00 sec)
+
+8.Display the unique jobs in emp table
+
+mysql> select distinct desig from employee_det order by desig;
++-------------+
+| desig       |
++-------------+
+| Analyst     |
+| Ass Manager |
+| CEO         |
+| Clerk       |
+| Developer   |
+| Manager     |
+| PA          |
+| Salesman    |
+| Team Leader |
+| Technician  |
++-------------+
+10 rows in set (0.03 sec)
+
+9.Display the names of employees who are not working as SALESMAN or CLERK or ANALYST
+
+mysql> select em_name from employee_det where not (desig='Salesman' or 'Clerk' or 'Analyst');
++------------------+
+| em_name          |
++------------------+
+| Kameshwar        |
+| Sudharsanan      |
+| Gabi             |
+| Ashok            |
+| Jereena          |
+| Kamali           |
+| Aravindh         |
+| Manikandaravindh |
+| Vijaya Ragavan   |
+| Prasanth         |
+| Hari             |
+| Mithun           |
+| Elavarasan       |
+| Nandha           |
++------------------+
+14 rows in set, 2 warnings (0.00 sec)
+
+10.Display the names and salary of employees in descending order of salary.
+
+mysql> select em_name from employee_det order by salary desc;
++------------------+
+| em_name          |
++------------------+
+| Sudharsanan      |
+| Manikandaravindh |
+| Kameshwar        |
+| Ashok            |
+| Hari             |
+| Mithun           |
+| Gabi             |
+| Elavarasan       |
+| Prasanth         |
+| Nandha           |
+| Subhash          |
+| Manikandan       |
+| Kamali           |
+| Vijaya Ragavan   |
+| Jereena          |
+| Aravindh         |
++------------------+
+16 rows in set (0.00 sec)
+
+11.Display the names,job,salary and increased by 15% labbel the column new salary.
+
+mysql> select em_name,desig,salary,salary+(salary*15/100) as new_salary from employee_det order by new_salary;
++------------------+-------------+----------+---------------+
+| em_name          | desig       | salary   | new_salary    |
++------------------+-------------+----------+---------------+
+| Jereena          | Team Leader |     NULL |          NULL |
+| Aravindh         | Ass Manager |     NULL |          NULL |
+| Kamali           | Clerk       |    20000 |    23000.0000 |
+| Vijaya Ragavan   | Clerk       |    20000 |    23000.0000 |
+| Subhash          | Salesman    |    30000 |    34500.0000 |
+| Manikandan       | Salesman    |    30000 |    34500.0000 |
+| Prasanth         | Analyst     |    40000 |    46000.0000 |
+| Nandha           | Analyst     |    40000 |    46000.0000 |
+| Gabi             | Technician  |    45000 |    51750.0000 |
+| Elavarasan       | Technician  |    45000 |    51750.0000 |
+| Ashok            | Developer   |    50000 |    57500.0000 |
+| Hari             | Developer   |    50000 |    57500.0000 |
+| Mithun           | Developer   |    50000 |    57500.0000 |
+| Kameshwar        | Manager     |    70000 |    80500.0000 |
+| Manikandaravindh | PA          |    85000 |    97750.0000 |
+| Sudharsanan      | CEO         | 10000000 | 11500000.0000 |
++------------------+-------------+----------+---------------+
+16 rows in set (0.00 sec)
+
+12.Display the name of the employees whose name contains 'LL'.
+
+mysql> select em_name from employee_det where em_name like '_ll%';
++---------+
+| em_name |
++---------+
+| Ella    |
++---------+
+1 row in set (0.00 sec)
+
+13.Display the name of the employees whose name contain 'A' as 4th character.
+
+mysql> select em_name from employee_det where em_name like '___a%';
++----------------+
+| em_name        |
++----------------+
+| Kamali         |
+| Vijaya Ragavan |
+| Ella           |
++----------------+
+3 rows in set (0.00 sec)
+
+14.Display the name,job and salary of the employees whose salary is not in the range of 2000 and 3000.
+
+mysql> select em_name,desig,salary from employee_det where salary not between 20000 and 30000;
++------------------+------------+----------+
+| em_name          | desig      | salary   |
++------------------+------------+----------+
+| Kameshwar        | Manager    |    70000 |
+| Sudharsanan      | CEO        | 10000000 |
+| Gabi             | Technician |    45000 |
+| Ashok            | Developer  |    50000 |
+| Manikandaravindh | PA         |    85000 |
+| Prasanth         | Analyst    |    40000 |
+| Hari             | Developer  |    50000 |
+| Mithun           | Developer  |    50000 |
+| Elavarasan       | Technician |    45000 |
+| Nandha           | Analyst    |    40000 |
+| Ella             | PA         |   120000 |
++------------------+------------+----------+
+11 rows in set (0.00 sec)
+
+15. Diplay the empno,job and hiredate of the employees who don't have MANAGER.
+
+mysql> select em_id,desig,doj from employee_det where desig not like 'Manager';
++-------+-------------+------------+
+| em_id | desig       | doj        |
++-------+-------------+------------+
+|   102 | CEO         | 1981-03-05 |
+|   103 | Salesman    | 1981-06-21 |
+|   104 | Technician  | 1981-04-15 |
+|   105 | Developer   | 1981-03-11 |
+|   106 | Team Leader | 1981-09-18 |
+|   107 | Clerk       | 1982-01-30 |
+|   107 | Ass Manager | 1981-10-09 |
+|   108 | PA          | 1980-11-28 |
+|   109 | Clerk       | 1981-05-20 |
+|   110 | Salesman    | 1981-07-20 |
+|   111 | Analyst     | 1981-04-12 |
+|   112 | Developer   | 1981-04-12 |
+|   113 | Developer   | 1981-08-18 |
+|   114 | Technician  | 1981-06-10 |
+|   121 | Analyst     | 1981-06-10 |
+|   169 | PA          | 1982-04-16 |
++-------+-------------+------------+
+16 rows in set (0.03 sec)
+
+16. Display the name and hiredate of the employees who have joined in the year '81'.
+
+mysql> select em_name,doj from employee_det where doj like '1981%';
++----------------+------------+
+| em_name        | doj        |
++----------------+------------+
+| Kameshwar      | 1981-02-02 |
+| Sudharsanan    | 1981-03-05 |
+| Subhash        | 1981-06-21 |
+| Gabi           | 1981-04-15 |
+| Ashok          | 1981-03-11 |
+| Jereena        | 1981-09-18 |
+| Aravindh       | 1981-10-09 |
+| Vijaya Ragavan | 1981-05-20 |
+| Manikandan     | 1981-07-20 |
+| Prasanth       | 1981-04-12 |
+| Hari           | 1981-04-12 |
+| Mithun         | 1981-08-18 |
+| Elavarasan     | 1981-06-10 |
+| Nandha         | 1981-06-10 |
++----------------+------------+
+14 rows in set (0.00 sec)
+
+17. Display the name and hiredate of the employees first half of year in '81'.
+
+mysql> select em_name,doj from employee_det where doj between '1981-01-01' and '1981-06-30';
++----------------+------------+
+| em_name        | doj        |
++----------------+------------+
+| Kameshwar      | 1981-02-02 |
+| Sudharsanan    | 1981-03-05 |
+| Subhash        | 1981-06-21 |
+| Gabi           | 1981-04-15 |
+| Ashok          | 1981-03-11 |
+| Vijaya Ragavan | 1981-05-20 |
+| Prasanth       | 1981-04-12 |
+| Hari           | 1981-04-12 |
+| Elavarasan     | 1981-06-10 |
+| Nandha         | 1981-06-10 |
++----------------+------------+
+10 rows in set (0.00 sec)
+
+18. Display the following output
+
+
+mysql> select em_name,salary,salary*3 as new_salary from employee_det where em_name = 'Mithun';
++---------+--------+------------+
+| em_name | salary | new_salary |
++---------+--------+------------+
+| Mithun  |  50000 |     150000 |
++---------+--------+------------+
+1 row in set (0.00 sec)
+
+19. Display the details of the employees who have joined in the month of 'MAY'
+
+mysql> select * from employee_det where doj between '1981-05-01' and '1981-05-31';
++---------+-------+----------------+-------+------------+--------+
+| dept_no | em_id | em_name        | desig | doj        | salary |
++---------+-------+----------------+-------+------------+--------+
+|      10 |   109 | Vijaya Ragavan | Clerk | 1981-05-20 |  20000 |
++---------+-------+----------------+-------+------------+--------+
+1 row in set (0.00 sec)

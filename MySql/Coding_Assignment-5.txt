@@ -1,0 +1,38 @@
+1) Consider the following relations for a boat management application for a beach resort:
+
+Choose appropriate foreign keys and other constraints
+
+SAILOR (SID,NAME,DOB,GENDER)
+
+* name column must have a value
+
+mysql> select * from sailor;
++------+-------------+------------+--------+
+| sid  | name        | dob        | gender |
++------+-------------+------------+--------+
+|    1 | kameshwar   | 1995-05-31 | male   |
+|    2 | Sudharsanan | 2002-05-11 | male   |
+|    3 | Gabi        | 2002-10-17 | female |
++------+-------------+------------+--------+
+3 rows in set (0.00 sec)
+
+BOAT (BID,BTYPE,BNAME,COLOR)
+
+** Boat name must be unique
+
+mysql> create table boat(bid int,btype char(30),bname char(30) unique key,color char(5));
+Query OK, 0 rows affected (0.03 sec)
+
+BTYPE can take two values (D, S)
+
+D (Deluxe) S (Super Deluxe)
+
+SAILS (SID, BID, DOT, SHIFT)
+
+DOT (Date of Trip)
+
+SHIFT can take two values (FN or AN)
+
+
+mysql> create table sails(sid int,bid varchar(10),dot varchar(20),shift char(2));
+Query OK, 0 rows affected (0.02 sec)

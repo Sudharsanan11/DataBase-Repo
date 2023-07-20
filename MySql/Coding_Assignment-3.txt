@@ -1,0 +1,208 @@
+1) Create the following tables
+a) studentprofile(rollno,name,dob,department,city)
+
+mysql> create table std_pro(roll_no int,std_name char(25),dob date,dept char(25),city char(25));
+Query OK, 0 rows affected (0.10 sec)
+
+b) marks (rollno,name,mark1,mark2)
+
+mysql> create table marks(roll_no int,name char(25),mark1 int,mark2 int);
+Query OK, 0 rows affected (0.06 sec)
+
+2) insert 5 different records to the above tables.
+
+mysql> insert into marks values(100,'Kameshwar',80,92);
+Query OK, 1 row affected (0.04 sec)
+
+mysql> insert into marks values(101,'Gabi',75,62);
+Query OK, 1 row affected (0.03 sec)
+
+mysql> insert into marks values(102,'Subash',60,40);
+Query OK, 1 row affected (0.03 sec)
+
+mysql> insert into marks values(103,'Ashok',50,72);
+Query OK, 1 row affected (0.03 sec)
+
+mysql> insert into marks values(104,'Mithun',35,21);
+Query OK, 1 row affected (0.03 sec)
+
+3) add a column total to marks table.
+
+mysql> alter table marks add total_marks int;
+Query OK, 0 rows affected (0.05 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+4) change the column name dob to dateofbirth.
+
+
+mysql> alter table std_pro change dob date_of_birth date;
+Query OK, 0 rows affected (0.05 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+5) display the structure of the above tables.
+
+mysql> desc std_pro;
++---------------+----------+------+-----+---------+-------+
+| Field         | Type     | Null | Key | Default | Extra |
++---------------+----------+------+-----+---------+-------+
+| roll_no       | int      | YES  |     | NULL    |       |
+| std_name      | char(25) | YES  |     | NULL    |       |
+| date_of_birth | date     | YES  |     | NULL    |       |
+| dept          | char(25) | YES  |     | NULL    |       |
+| city          | char(25) | YES  |     | NULL    |       |
++---------------+----------+------+-----+---------+-------+
+5 rows in set (0.05 sec)
+
+6) List the tables which you have created.
+
+mysql> show tables;
++-----------------------+
+| Tables_in_sudharsanan |
++-----------------------+
+| customer              |
+| employee_det          |
+| marks                 |
+| order_details         |
+| products              |
+| std_pro               |
+| student               |
+| student_det           |
++-----------------------+
+8 rows in set (0.00 sec)
+
+7) Calculate total marks for each student and update in marks table.
+
+mysql> update marks set total_marks=mark1+mark2;
+Query OK, 5 rows affected (0.03 sec)
+Rows matched: 5  Changed: 5  Warnings: 0
+
+mysql> select * from marks;
++---------+-----------+-------+-------+-------------+
+| roll_no | name      | mark1 | mark2 | total_marks |
++---------+-----------+-------+-------+-------------+
+|     100 | Kameshwar |    80 |    92 |         172 |
+|     101 | Gabi      |    75 |    62 |         137 |
+|     102 | Subash    |    60 |    40 |         100 |
+|     103 | Ashok     |    50 |    72 |         122 |
+|     104 | Mithun    |    35 |    21 |          56 |
++---------+-----------+-------+-------+-------------+
+5 rows in set (0.00 sec)
+
+8) remove the 4 th rollno from studentprofile  table.
+
+mysql> delete from marks where roll_no=103;
+Query OK, 1 row affected (0.03 sec)
+
+mysql> select * from marks;
++---------+-----------+-------+-------+-------------+
+| roll_no | name      | mark1 | mark2 | total_marks |
++---------+-----------+-------+-------+-------------+
+|     100 | Kameshwar |    80 |    92 |         172 |
+|     101 | Gabi      |    75 |    62 |         137 |
+|     102 | Subash    |    60 |    40 |         100 |
+|     104 | Mithun    |    35 |    21 |          56 |
++---------+-----------+-------+-------+-------------+
+4 rows in set (0.00 sec)
+
+9) Display all the records of both the tables.
+
+mysql> select * from std_pro;
++---------+-----------+---------------+--------------+------------+
+| roll_no | std_name  | date_of_birth | dept         | city       |
++---------+-----------+---------------+--------------+------------+
+|     200 | Kameshwar | 1995-05-31    | Mechatronics | Coimbatore |
+|     201 | Gabi      | 2002-08-15    | CSE          | Coimbatore |
+|     202 | Subash    | 1999-12-02    | CSE          | Coimbatore |
+|     203 | Ashok     | 2002-09-14    | IT           | Coimbatore |
+|     204 | Nandha    | 2002-04-11    | ECE          | Coimbatore |
++---------+-----------+---------------+--------------+------------+
+5 rows in set (0.00 sec)
+
+mysql> select * from marks;
++---------+-----------+-------+-------+-------------+
+| roll_no | name      | mark1 | mark2 | total_marks |
++---------+-----------+-------+-------+-------------+
+|     100 | Kameshwar |    80 |    92 |         172 |
+|     101 | Gabi      |    75 |    62 |         137 |
+|     102 | Subash    |    60 |    40 |         100 |
+|     104 | Mithun    |    35 |    21 |          56 |
++---------+-----------+-------+-------+-------------+
+4 rows in set (0.03 sec)
+
+10) save your changes.
+
+11) add two more columns average and grade to marks table.
+
+mysql> desc marks;
++-------------+-------------+------+-----+---------+-------+
+| Field       | Type        | Null | Key | Default | Extra |
++-------------+-------------+------+-----+---------+-------+
+| roll_no     | int         | YES  |     | NULL    |       |
+| name        | char(25)    | YES  |     | NULL    |       |
+| mark1       | int         | YES  |     | NULL    |       |
+| mark2       | int         | YES  |     | NULL    |       |
+| total_marks | int         | YES  |     | NULL    |       |
+| avg         | float(10,2) | YES  |     | NULL    |       |
+| grade       | char(5)     | YES  |     | NULL    |       |
++-------------+-------------+------+-----+---------+-------+
+7 rows in set (0.04 sec)
+
+12) calculate the average for all the students.
+
+
+mysql> select * from marks;
++---------+-----------+-------+-------+-------------+-------+-------+
+| roll_no | name      | mark1 | mark2 | total_marks | avg   | grade |
++---------+-----------+-------+-------+-------------+-------+-------+
+|     100 | Kameshwar |    80 |    92 |         172 | 86.00 | NULL  |
+|     101 | Gabi      |    75 |    62 |         137 | 68.50 | NULL  |
+|     102 | Subash    |    60 |    40 |         100 | 50.00 | NULL  |
+|     104 | Mithun    |    35 |    21 |          56 | 28.00 | NULL  |
++---------+-----------+-------+-------+-------------+-------+-------+
+4 rows in set (0.00 sec)
+
+13) Calculate the grade (if both the marks are
+
+above 40 then grade should be pass
+
+if less than 40 grade should be fail).
+
+
+mysql> select * from marks;
++---------+-----------+-------+-------+-------------+-------+-------+
+| roll_no | name      | mark1 | mark2 | total_marks | avg   | grade |
++---------+-----------+-------+-------+-------------+-------+-------+
+|     100 | Kameshwar |    80 |    92 |         172 | 86.00 | Pass  |
+|     101 | Gabi      |    75 |    62 |         137 | 68.50 | Pass  |
+|     102 | Subash    |    60 |    40 |         100 | 50.00 | Pass  |
+|     104 | Mithun    |    35 |    21 |          56 | 28.00 | Fail  |
++---------+-----------+-------+-------+-------------+-------+-------+
+4 rows in set (0.00 sec)
+
+14) Remove the column average .
+
+mysql> desc marks;
++-------------+----------+------+-----+---------+-------+
+| Field       | Type     | Null | Key | Default | Extra |
++-------------+----------+------+-----+---------+-------+
+| roll_no     | int      | YES  |     | NULL    |       |
+| name        | char(25) | YES  |     | NULL    |       |
+| mark1       | int      | YES  |     | NULL    |       |
+| mark2       | int      | YES  |     | NULL    |       |
+| total_marks | int      | YES  |     | NULL    |       |
+| grade       | char(5)  | YES  |     | NULL    |       |
++-------------+----------+------+-----+---------+-------+
+6 rows in set (0.00 sec)
+
+15) Remove all the records from the table.
+
+
+mysql> truncate table marks;
+Query OK, 0 rows affected (0.04 sec)
+
+16) confirm your changes
+
+
+mysql> select * from marks;
+Empty set (0.00 sec)
+

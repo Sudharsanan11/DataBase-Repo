@@ -1,0 +1,106 @@
+1. Create a student table to store name, age and score pf students.
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| mysql              |
+| performance_schema |
+| sudharsanan        |
+| sys                |
++--------------------+
+5 rows in set (0.04 sec)
+
+mysql> use sudharsanan;
+Database changed
+mysql> create table student(name varchar(200),age int,score int);
+Query OK, 0 rows affected (0.06 sec)
+
+mysql> desc student;
++-------+--------------+------+-----+---------+-------+
+| Field | Type         | Null | Key | Default | Extra |
++-------+--------------+------+-----+---------+-------+
+| name  | varchar(200) | YES  |     | NULL    |       |
+| age   | int          | YES  |     | NULL    |       |
+| score | int          | YES  |     | NULL    |       |
++-------+--------------+------+-----+---------+-------+
+3 rows in set (0.00 sec)
+
+2.In a typical e-commerce application, we need to store the following customer details, Create a costumer table to store the data.
+mysql> use sudharsanan;
+Database changed
+mysql> create table customer(customer_id int,first_name varchar(200),last_name varchar(200),date_of_birth date,address text,phone_number int);
+Query OK, 0 rows affected (0.04 sec)
+
+mysql> desc customer;
++---------------+--------------+------+-----+---------+-------+
+| Field         | Type         | Null | Key | Default | Extra |
++---------------+--------------+------+-----+---------+-------+
+| customer_id   | int          | YES  |     | NULL    |       |
+| first_name    | varchar(200) | YES  |     | NULL    |       |
+| last_name     | varchar(200) | YES  |     | NULL    |       |
+| date_of_birth | date         | YES  |     | NULL    |       |
+| address       | text         | YES  |     | NULL    |       |
+| phone_number  | int          | YES  |     | NULL    |       |
++---------------+--------------+------+-----+---------+-------+
+6 rows in set (0.00 sec)
+
+3. We need to store the details of order in an e-commerce application. Create an order_details table to store the following details for every order.
+mysql> use sudharsanan;
+Database changed
+mysql> create table order_details(order_id int,customer_id int,order_determine datetime,shipped_datetime datetime,total_amount float);
+Query OK, 0 rows affected (0.04 sec)
+
+mysql> desc order_details;
++------------------+----------+------+-----+---------+-------+
+| Field            | Type     | Null | Key | Default | Extra |
++------------------+----------+------+-----+---------+-------+
+| order_id         | int      | YES  |     | NULL    |       |
+| customer_id      | int      | YES  |     | NULL    |       |
+| order_determine  | datetime | YES  |     | NULL    |       |
+| shipped_datetime | datetime | YES  |     | NULL    |       |
+| total_amount     | float    | YES  |     | NULL    |       |
++------------------+----------+------+-----+---------+-------+
+5 rows in set (0.00 sec)
+
+4. we're storing the details of playefs who are a part of tournament. The database contains a player table that stores the name, age and score of players. we have to add a new player to the player table.
+mysql> use sudharsanan;
+Database changed
+mysql> create table player(name char(50),age int,score int);
+Query OK, 0 rows affected (0.04 sec)
+
+mysql> insert into player(name,age,score)values('Ram',28,30);
+Query OK, 1 row affected (0.03 sec)
+
+mysql> desc player;
++-------+----------+------+-----+---------+-------+
+| Field | Type     | Null | Key | Default | Extra |
++-------+----------+------+-----+---------+-------+
+| name  | char(50) | YES  |     | NULL    |       |
+| age   | int      | YES  |     | NULL    |       |
+| score | int      | YES  |     | NULL    |       |
++-------+----------+------+-----+---------+-------+
+3 rows in set (0.00 sec)
+
+5. The database contains a player table that stores the name, age and score of players. Get all the player table in the following format.
+mysql> use sudharsanan;
+Database changed
+mysql> select *from player;
++--------+------+-------+
+| name   | age  | score |
++--------+------+-------+
+| Suresh |   21 |    70 |
+| Venkat |   21 |    43 |
++--------+------+-------+
+2 rows in set (0.00 sec)
+6. Get all the details of Suresh from the player table in the following format.
+mysql> delete from player where name='Venkat';
+Query OK, 1 row affected (0.03 sec)
+
+mysql> select name,age,score from player;
++--------+------+-------+
+| name   | age  | score |
++--------+------+-------+
+| Suresh |   21 |    70 |
++--------+------+-------+
+1 row in set (0.00 sec)

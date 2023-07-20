@@ -1,0 +1,229 @@
+1.To create a collections for customer_details and set multiple address fields using array, minimum 3 address. 
+
+sudharsanan> db.Cust_det.find()
+[
+  {
+    _id: ObjectId("64b1685e70269fad345e461f"),
+    Cust_id: 100,
+    First_name: 'Kamesh',
+    Dob: ISODate("2023-06-08T00:00:00.000Z"),
+    Address: [ 'Erode', 'Tamil Nadu', 'India' ],
+    Mobile: 9876543210
+  },
+  {
+    _id: ObjectId("64b168b370269fad345e4620"),
+    Cust_id: 101,
+    First_name: 'Subash',
+    Dob: ISODate("2023-06-11T00:00:00.000Z"),
+    Address: [ 'Coimbatore', 'Tamil Nadu', 'India' ],
+    Mobile: 9876543211
+  },
+  {
+    _id: ObjectId("64b168e870269fad345e4621"),
+    Cust_id: 102,
+    First_name: 'Ashok',
+    Dob: ISODate("2023-06-17T00:00:00.000Z"),
+    Address: [ 'Coimbatore', 'Tamil Nadu', 'India' ],
+    Mobile: 9876543213
+  }
+]
+
+2. To insert two new address to the person "Arvind" and "Karthik" in the address field using push method.
+
+sudharsanan> db.Cust_det.updateOne({First_name:'Kamesh'},{$push:{'Address':'Asia'}})
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+sudharsanan> db.Cust_det.find({First_name:'Kamesh'})
+[
+  {
+    _id: ObjectId("64b1685e70269fad345e461f"),
+    Cust_id: 100,
+    First_name: 'Kamesh',
+    Dob: ISODate("2023-06-08T00:00:00.000Z"),
+    Address: [ 'Erode', 'Tamil Nadu', 'India', 'Asia' ],
+    Mobile: 9876543210
+  }
+]
+sudharsanan> db.Cust_det.updateOne({First_name:'Ashok'},{$push:{'Address':'Asia'}})
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+sudharsanan> db.Cust_det.find({First_name:'Ashok'})
+[
+  {
+    _id: ObjectId("64b168e870269fad345e4621"),
+    Cust_id: 102,
+    First_name: 'Ashok',
+    Dob: ISODate("2023-06-17T00:00:00.000Z"),
+    Address: [ 'Coimbatore', 'Tamil Nadu', 'India', 'Asia' ],
+    Mobile: 9876543213
+  }
+]
+3. To remove first address from Arvind document using pop method.
+
+sudharsanan> db.Cust_det.updateOne({First_name:'Kamesh'},{$pop:{'Address':1}})
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+sudharsanan> db.Cust_det.find({First_name:'Kamesh'})
+[
+  {
+    _id: ObjectId("64b1685e70269fad345e461f"),
+    Cust_id: 100,
+    First_name: 'Kamesh',
+    Dob: ISODate("2023-06-08T00:00:00.000Z"),
+    Address: [ 'Erode', 'Tamil Nadu', 'India' ],
+    Mobile: 9876543210
+  }
+]
+
+4. To remove last address from karthik document using pop method.
+
+sudharsanan> db.Cust_det.updateOne({First_name:'Ashok'},{$pop:{'Address':-1}})
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+sudharsanan> db.Cust_det.find({First_name:'Ashok'})
+[
+  {
+    _id: ObjectId("64b168e870269fad345e4621"),
+    Cust_id: 102,
+    First_name: 'Ashok',
+    Dob: ISODate("2023-06-17T00:00:00.000Z"),
+    Address: [ 'Tamil Nadu', 'India', 'Asia' ],
+    Mobile: 9876543213
+  }
+]
+5. To remove middle address from karthik document using pull method.
+
+sudharsanan> db.Cust_det.updateOne({First_name:'Ashok'},{$pull:{'Address':'India'}})
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+sudharsanan> db.Cust_det.find({First_name:'Ashok'})
+[
+  {
+    _id: ObjectId("64b168e870269fad345e4621"),
+    Cust_id: 102,
+    First_name: 'Ashok',
+    Dob: ISODate("2023-06-17T00:00:00.000Z"),
+    Address: [ 'Tamil Nadu', 'Asia' ],
+    Mobile: 9876543213
+  }
+]
+
+6. To insert new field as discount:"Aadi sales" to all the customer.
+
+sudharsanan> db.Cust_det.updateMany({},{$set:{Discount:'Aadi Sales'}})
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 3,
+  modifiedCount: 3,
+  upsertedCount: 0
+}
+sudharsanan> db.Cust_det.find()
+[
+  {
+    _id: ObjectId("64b1685e70269fad345e461f"),
+    Cust_id: 100,
+    First_name: 'Kamesh',
+    Dob: ISODate("2023-06-08T00:00:00.000Z"),
+    Address: [ 'Erode', 'Tamil Nadu', 'India' ],
+    Mobile: 9876543210,
+    Discount: 'Aadi Sales'
+  },
+  {
+    _id: ObjectId("64b168b370269fad345e4620"),
+    Cust_id: 101,
+    First_name: 'Subash',
+    Dob: ISODate("2023-06-11T00:00:00.000Z"),
+    Address: [ 'Coimbatore', 'Tamil Nadu', 'India' ],
+    Mobile: 9876543211,
+    Discount: 'Aadi Sales'
+  },
+  {
+    _id: ObjectId("64b168e870269fad345e4621"),
+    Cust_id: 102,
+    First_name: 'Ashok',
+    Dob: ISODate("2023-06-17T00:00:00.000Z"),
+    Address: [ 'Tamil Nadu', 'Asia' ],
+    Mobile: 9876543213,
+    Discount: 'Aadi Sales'
+  }
+]
+
+7. To delete a specify document from the collection.
+
+sudharsanan> db.Cust_det.deleteOne({Cust_id:102})
+{ acknowledged: true, deletedCount: 1 }
+sudharsanan> db.Cust_det.find()
+[
+  {
+    _id: ObjectId("64b1685e70269fad345e461f"),
+    Cust_id: 100,
+    First_name: 'Kamesh',
+    Dob: ISODate("2023-06-08T00:00:00.000Z"),
+    Address: [ 'Erode', 'Tamil Nadu', 'India' ],
+    Mobile: 9876543210,
+    Discount: 'Aadi Sales'
+  },
+  {
+    _id: ObjectId("64b168b370269fad345e4620"),
+    Cust_id: 101,
+    First_name: 'Subash',
+    Dob: ISODate("2023-06-11T00:00:00.000Z"),
+    Address: [ 'Coimbatore', 'Tamil Nadu', 'India' ],
+    Mobile: 9876543211,
+    Discount: 'Aadi Sales'
+  }
+]
+
+8. To delete a repeated document from the collection.
+
+
+sudharsanan> db.Cust_det.remove({First_name:'Subash'})
+DeprecationWarning: Collection.remove() is deprecated. Use deleteOne, deleteMany, findOneAndDelete, or bulkWrite.
+{ acknowledged: true, deletedCount: 1 }
+sudharsanan> db.Cust_det.find()
+[
+  {
+    _id: ObjectId("64b1685e70269fad345e461f"),
+    Cust_id: 100,
+    First_name: 'Kamesh',
+    Dob: ISODate("2023-06-08T00:00:00.000Z"),
+    Address: [ 'Erode', 'Tamil Nadu', 'India' ],
+    Mobile: 9876543210,
+    Discount: 'Aadi Sales'
+  }
+]
+
+9. To drop the collection
+
+sudharsanan> db.Cust_det.drop()
+true
+
+10. To drop the database.
+batch17> db.dropDatabase()
+{ ok: 1, dropped: 'batch17' }

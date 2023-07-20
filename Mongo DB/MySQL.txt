@@ -1,0 +1,140 @@
+Q1 . Create a table with suitable constraints and fill the table with following dataset.
+
+mysql> desc teachers_det;
++--------------+-------------+------+-----+---------+-------+
+| Field        | Type        | Null | Key | Default | Extra |
++--------------+-------------+------+-----+---------+-------+
+| teacher_id   | int         | YES  |     | NULL    |       |
+| teacher_name | varchar(20) | YES  |     | NULL    |       |
+| department   | varchar(20) | YES  |     | NULL    |       |
+| DOJ          | date        | YES  |     | NULL    |       |
+| salary       | int         | YES  |     | NULL    |       |
+| gender       | char(1)     | YES  |     | NULL    |       |
++--------------+-------------+------+-----+---------+-------+
+6 rows in set (0.06 sec)
+
+mysql> select * from teachers_det;
++------------+--------------+------------+------------+--------+--------+
+| teacher_id | teacher_name | department | DOJ        | salary | gender |
++------------+--------------+------------+------------+--------+--------+
+|          1 | Kamesh       | Computer   | 2000-05-31 |  15000 | M      |
+|          2 | Subash       | Social     | 2000-12-02 |   9000 | M      |
+|          3 | Kamali       | History    | 2000-07-10 |   8000 | F      |
+|          4 | Ashok        | History    | 2000-07-11 |   8000 | M      |
+|          5 | Sudharsanan  | Maths      | 2000-05-11 |  30000 | M      |
+|          6 | Gabi         | English    | 2000-11-17 |  20000 | M      |
+|          7 | Jereena      | English    | 2000-11-09 |  20000 | F      |
++------------+--------------+------------+------------+--------+--------+
+7 rows in set (0.00 sec)
+
+Q2. Write an SQL Query to select all the information of teachers in computer department.
+
+mysql> select * from teachers_det where department='Computer';
++------------+--------------+------------+------------+--------+--------+
+| teacher_id | teacher_name | department | DOJ        | salary | gender |
++------------+--------------+------------+------------+--------+--------+
+|          1 | Kamesh       | Computer   | 2000-05-31 |  15000 | M      |
++------------+--------------+------------+------------+--------+--------+
+1 row in set (0.00 sec)
+
+Q3. Write a query to list the name of female teachers in History department.
+
+mysql> select teacher_name from teachers_det where department='History' and gender='F';
++--------------+
+| teacher_name |
++--------------+
+| Kamali       |
++--------------+
+1 row in set (0.00 sec)
+
+Q4. list all names of teachers with date of admission in ascending order
+
+mysql> select teacher_name from teachers_det order by DOJ;
++--------------+
+| teacher_name |
++--------------+
+| Sudharsanan  |
+| Kamesh       |
+| Kamali       |
+| Ashok        |
+| Jereena      |
+| Gabi         |
+| Subash       |
++--------------+
+7 rows in set (0.03 sec)
+
+Q5. display Teacher’s name, Department, and Salary of male teacher.
+
+mysql> select teacher_name,department,salary from teachers_det where gender='M';
++--------------+------------+--------+
+| teacher_name | department | salary |
++--------------+------------+--------+
+| Kamesh       | Computer   |  15000 |
+| Subash       | Social     |   9000 |
+| Ashok        | History    |   8000 |
+| Sudharsanan  | Maths      |  30000 |
+| Gabi         | English    |  20000 |
++--------------+------------+--------+
+5 rows in set (0.00 sec)
+
+Q6. To count the number of items whose salary is less than 10,000
+
+mysql> select count(salary) from teachers_det where salary<10000;
++---------------+
+| count(salary) |
++---------------+
+|             3 |
++---------------+
+1 row in set (0.04 sec)
+
+Q7.  To insert a new record in the Teacher table with the following data: 8,”Mersha”,”computer”,{1/1/2000},12000,”m”
+
+mysql> insert into teachers_det values(8,'Mersha','Computer','2000-01-01',12000,'M');
+Query OK, 1 row affected (0.03 sec)
+
+mysql> select * from teachers_det;
++------------+--------------+------------+------------+--------+--------+
+| teacher_id | teacher_name | department | DOJ        | salary | gender |
++------------+--------------+------------+------------+--------+--------+
+|          1 | Kamesh       | Computer   | 2000-05-31 |  15000 | M      |
+|          2 | Subash       | Social     | 2000-12-02 |   9000 | M      |
+|          3 | Kamali       | History    | 2000-07-10 |   8000 | F      |
+|          4 | Ashok        | History    | 2000-07-11 |   8000 | M      |
+|          5 | Sudharsanan  | Maths      | 2000-05-11 |  30000 | M      |
+|          6 | Gabi         | English    | 2000-11-17 |  20000 | M      |
+|          7 | Jereena      | English    | 2000-11-09 |  20000 | F      |
+|          8 | Mersha       | Computer   | 2000-01-01 |  12000 | M      |
++------------+--------------+------------+------------+--------+--------+
+8 rows in set (0.00 sec)
+
+Q8. List the teacher detail who is getting the minimum salary.
+
+r 'order by salary limit 1' at line 1
+mysql> select * from teachers_det order by salary limit 1;
++------------+--------------+------------+------------+--------+--------+
+| teacher_id | teacher_name | department | DOJ        | salary | gender |
++------------+--------------+------------+------------+--------+--------+
+|          3 | Kamali       | History    | 2000-07-10 |   8000 | F      |
++------------+--------------+------------+------------+--------+--------+
+1 row in set (0.00 sec)
+
+Q9.  List the teacher detail who is getting the second minimum salary.
+
+mysql> select * from teachers_det order by salary limit 1 offset 2;
++------------+--------------+------------+------------+--------+--------+
+| teacher_id | teacher_name | department | DOJ        | salary | gender |
++------------+--------------+------------+------------+--------+--------+
+|          2 | Subash       | Social     | 2000-12-02 |   9000 | M      |
++------------+--------------+------------+------------+--------+--------+
+1 row in set (0.00 sec)
+
+Q10. List down the average salary of the teachers belongs to History department  
+
+mysql> select avg(salary) from teachers_det where department='History';
++-------------+
+| avg(salary) |
++-------------+
+|   8000.0000 |
++-------------+
+1 row in set (0.03 sec)
+

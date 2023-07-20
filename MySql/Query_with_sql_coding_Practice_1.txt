@@ -1,0 +1,97 @@
+1. Get all details of products from the "Puma" brand.
+mysql> desc products;
++----------+----------+------+-----+---------+-------+
+| Field    | Type     | Null | Key | Default | Extra |
++----------+----------+------+-----+---------+-------+
+| name     | char(30) | YES  |     | NULL    |       |
+| category | char(30) | YES  |     | NULL    |       |
+| price    | int      | YES  |     | NULL    |       |
+| brand    | char(30) | YES  |     | NULL    |       |
+| rating   | float    | YES  |     | NULL    |       |
++----------+----------+------+-----+---------+-------+
+5 rows in set (0.00 sec)
+
+mysql> insert into products values('Black Shirt','Clothing',900,'Puma',4.8);
+Query OK, 1 row affected (0.03 sec)
+
+
+mysql> select *from products;
++-------------+----------+-------+-------+--------+
+| name        | category | price | brand | rating |
++-------------+----------+-------+-------+--------+
+| Black Shirt | Clothing |   900 | Puma  |    4.8 |
++-------------+----------+-------+-------+--------+
+1 row in set (0.00 sec)
+
+2.User would like to shop for "Jeans". A common pattern in all the jeans products is that their name ends with "Jeans". Help the user get the details of required products.
+mysql> select * from products where name like '%jeans';
++-------------+----------+-------+---------------+--------+
+| name        | category | price | brand         | rating |
++-------------+----------+-------+---------------+--------+
+| Black Jeans | Clothing |  1200 | Peter England |    4.7 |
++-------------+----------+-------+---------------+--------+
+1 row in set (0.03 sec)
+
+3. User wants to purchase "Bourbon Small", "Bourbon With Extra Cookies", or products from bourbon. Retrieve all details of such products accordingly.
+
+
+mysql> select * from products where name like 'Bourbon%';
++---------------+----------+-------+---------+--------+
+| name          | category | price | brand   | rating |
++---------------+----------+-------+---------+--------+
+| Bourbon Small | Cookies  |    40 | Bourbon |    3.7 |
++---------------+----------+-------+---------+--------+
+1 row in set (0.00 sec)
+
+4.List all the "chips" in the database.
+
+mysql> select * from products where name like '%C____';
++--------------+----------+-------+-------+--------+
+| name         | category | price | brand | rating |
++--------------+----------+-------+-------+--------+
+| Potato Chips | Chips    |    70 | Lays  |    4.5 |
++--------------+----------+-------+-------+--------+
+1 row in set (0.00 sec)
+
+5.Get the products whose name matches the following pattern:
+ i)name ends with at least four characters,
+ii)Out of the last 4 charaters, first charater is "h" and the third character is "r".
+
+mysql> select * from products where name like '%k_H_r_';
++-----------+----------+-------+-------+--------+
+| name      | category | price | brand | rating |
++-----------+----------+-------+-------+--------+
+| Mask Hero | Movie    |   200 | LCU   |      5 |
++-----------+----------+-------+-------+--------+
+1 row in set (0.00 sec)
+
+6.Get all the products whose price is less than or equal to 1000.
+mysql> select * from products where price<=1000;
++----------------+--------------+-------+----------+--------+
+| name           | category     | price | brand    | rating |
++----------------+--------------+-------+----------+--------+
+| Black Shirt    | Clothing     |   900 | Puma     |    4.8 |
+| Black Bourbon  | Cookies      |    70 | ParleG   |    4.2 |
+| DF Bourbon     | Cookies      |    40 | Sunfest  |    3.9 |
+| Potato Chips   | Chips        |    70 | Lays     |    4.5 |
+| Bourbon Small  | Cookies      |    40 | Bourbon  |    3.7 |
+| Women Horlicks | Drink Powder |   200 | Horlicks |    4.2 |
+| Mask Hero      | Movie        |   200 | LCU      |      5 |
++----------------+--------------+-------+----------+--------+
+7 rows in set (0.00 sec)
+
+7.Get all the best rated products.
+products whose rating is above 4.0 are considered as best rated products.
+
+mysql> select * from products where rating>4.0;
++----------------+--------------+-------+---------------+--------+
+| name           | category     | price | brand         | rating |
++----------------+--------------+-------+---------------+--------+
+| Black Shirt    | Clothing     |   900 | Puma          |    4.8 |
+| Black Jeans    | Clothing     |  1200 | Peter England |    4.7 |
+| Black Bourbon  | Cookies      |    70 | ParleG        |    4.2 |
+| Potato Chips   | Chips        |    70 | Lays          |    4.5 |
+| Women Horlicks | Drink Powder |   200 | Horlicks      |    4.2 |
+| Mask Hero      | Movie        |   200 | LCU           |      5 |
++----------------+--------------+-------+---------------+--------+
+6 rows in set (0.03 sec) 

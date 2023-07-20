@@ -1,0 +1,145 @@
+1.      Create a Student Table to store name, age and score of students
+
+ sudharsanan> db.students.find()
+[
+  {
+    _id: ObjectId("64aec77f3efdc2ea17018b81"),
+    Name: 'String',
+    Age: 'number',
+    Score: 'floating point'
+  }
+]
+
+2.      In a typical e-commerce application, we need to store the following customer details.
+
+Create a collection as customer to store the data.
+
+sudharsanan> db.cust_det.find()
+[
+  {
+    _id: ObjectId("64aec8ea3efdc2ea17018b82"),
+    Customerid: 'integer',
+    'First name': 'string',
+    'Last name': 'string',
+    Dob: 'date',
+    Address: 'string',
+    'Phone number': 'integer'
+  }
+] 
+
+3.      In a typical e-commerce application, we need to store the following order details.
+
+Create a collection as order_det to store the data.
+
+4.      To insert at least 6 documents in all collection.
+
+5.      To display documents in a pretty format using find ().
+
+ sudharsanan> db.order_det.find()
+[
+  {
+    _id: ObjectId("64aecbd83efdc2ea17018b83"),
+    orderid: 1000,
+    customerid: 2000,
+    order_datetime: ISODate("2023-07-10T00:00:00.000Z"),
+    shipped_datetime: ISODate("2023-07-11T00:00:00.000Z"),
+    total_amount: 5000
+  },
+  {
+    _id: ObjectId("64aecc1d3efdc2ea17018b84"),
+    orderid: 1001,
+    customerid: 2001,
+    order_datetime: ISODate("2023-07-05T00:00:00.000Z"),
+    shipped_datetime: ISODate("2023-07-06T00:00:00.000Z"),
+    total_amount: 700
+  },
+  {
+    _id: ObjectId("64aecc513efdc2ea17018b85"),
+    orderid: 1002,
+    customerid: 2002,
+    order_datetime: ISODate("2023-07-01T00:00:00.000Z"),
+    shipped_datetime: ISODate("2023-07-03T00:00:00.000Z"),
+    total_amount: 1200
+  },
+  {
+    _id: ObjectId("64aeccc93efdc2ea17018b86"),
+    orderid: 1003,
+    customerid: 2003,
+    order_datetime: ISODate("2023-06-21T00:00:00.000Z"),
+    shipped_datetime: ISODate("2023-06-25T00:00:00.000Z"),
+    total_amount: 3000
+  },
+  {
+    _id: ObjectId("64aeccfc3efdc2ea17018b87"),
+    orderid: 1004,
+    customerid: 2004,
+    order_datetime: ISODate("2023-06-17T00:00:00.000Z"),
+    shipped_datetime: ISODate("2023-06-20T00:00:00.000Z"),
+    total_amount: 900
+  },
+  {
+    _id: ObjectId("64aecd333efdc2ea17018b88"),
+    orderid: 1005,
+    customerid: 2005,
+    order_datetime: ISODate("2023-07-09T00:00:00.000Z"),
+    shipped_datetime: ISODate("2023-06-12T00:00:00.000Z"),
+    total_amount: 5000
+  }
+]
+
+ 
+6. Create a database as Employee and create collection as emp_det, insert five documents and remove collection and delete the employee. Use drop () and show method to differentiate deletion of collections and database.
+
+sudharsanan> use Employee
+switched to db Employee
+Employee> db.createCollection('emp_det')
+{ ok: 1 }
+
+Employee> db.emp_det.insert({'Emp_id':100,'Name':'Kamesh','Job':'Manager','salary':80000})
+{
+  acknowledged: true,
+  insertedIds: { '0': ObjectId("64aed3d13efdc2ea17018b89") }
+}
+
+Employee> db.emp_det.find()
+[
+  {
+    _id: ObjectId("64aed3d13efdc2ea17018b89"),
+    Emp_id: 100,
+    Name: 'Kamesh',
+    Job: 'Manager',
+    salary: 80000
+  },
+  {
+    _id: ObjectId("64aed5023efdc2ea17018b8a"),
+    Emp_id: 101,
+    Name: 'Subash',
+    Job: 'Developer',
+    salary: 50000
+  },
+  {
+    _id: ObjectId("64aed5393efdc2ea17018b8b"),
+    Emp_id: 102,
+    Name: 'Ashok',
+    Job: 'Tester',
+    salary: 40000
+  },
+  {
+    _id: ObjectId("64aed55d3efdc2ea17018b8c"),
+    Emp_id: 103,
+    Name: 'Ammu',
+    Job: 'Salesman',
+    salary: 30000
+  },
+  {
+    _id: ObjectId("64aed5783efdc2ea17018b8d"),
+    Emp_id: 104,
+    Name: 'Kamali',
+    Job: 'Clerk',
+    salary: 20000
+  }
+]
+Employee> db.emp_det.drop()
+true
+Employee> db.dropDatabase()
+{ ok: 1, dropped: 'Employee' }

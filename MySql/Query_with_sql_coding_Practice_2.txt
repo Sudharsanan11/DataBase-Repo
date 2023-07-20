@@ -1,0 +1,127 @@
+1. Get all the details of products that belong to "Clothing" category and price less than 700.
+
+mysql> select * from products where category='Clothing' and price<700;
++-------------+----------+-------+---------------+--------+
+| name        | category | price | brand         | rating |
++-------------+----------+-------+---------------+--------+
+| Blue Shirt  | Clothing |   699 | Peter England |    4.3 |
+| Grey Shorts | Clothing |   499 | Denim         |    4.6 |
++-------------+----------+-------+---------------+--------+
+2 rows in set (0.00 sec)
+
+2. Get all the details of products that belong to "Demin" brand with rating greater than 4.
+
+
+mysql> select * from products where brand='Denim' and rating>4.0;
++-------------+----------+-------+-------+--------+
+| name        | category | price | brand | rating |
++-------------+----------+-------+-------+--------+
+| Grey Shorts | Clothing |   499 | Denim |    4.6 |
+| Blue Pant   | Clothing |   699 | Denim |    4.5 |
++-------------+----------+-------+-------+--------+
+2 rows in set (0.00 sec)
+
+3. Get all details of products with price less than or equal to 1000. assume that the products with rating greater than 4.0 as best rated products.
+
+mysql> select * from products where rating>4.0 and price<=1000;
++----------------+--------------+-------+---------------+--------+
+| name           | category     | price | brand         | rating |
++----------------+--------------+-------+---------------+--------+
+| Black Shirt    | Clothing     |   900 | Puma          |    4.8 |
+| Black Bourbon  | Cookies      |    70 | ParleG        |    4.2 |
+| Potato Chips   | Chips        |    70 | Lays          |    4.5 |
+| Women Horlicks | Drink Powder |   200 | Horlicks      |    4.2 |
+| Mask Hero      | Movie        |   200 | LCU           |      5 |
+| Blue Shirt     | Clothing     |   699 | Peter England |    4.3 |
+| Grey Shorts    | Clothing     |   499 | Denim         |    4.6 |
++----------------+--------------+-------+---------------+--------+
+7 rows in set (0.00 sec)
+
+4. Get all the products from the product table whose 
+i)rating is above 3.6 and
+ii)price is less than 1000 and
+iii)belongs to "Puma" brand
+
+
+mysql> select * from products where brand='Puma' and price<1000 and rating>3.6;
++-------------+----------+-------+-------+--------+
+| name        | category | price | brand | rating |
++-------------+----------+-------+-------+--------+
+| Black Shirt | Clothing |   900 | Puma  |    4.8 |
+| Track Pant  | Clothing |   999 | Puma  |    4.5 |
+| T Shirt     | Clothing |   699 | Puma  |    3.9 |
++-------------+----------+-------+-------+--------+
+3 rows in set (0.00 sec)
+
+5. Get all the products from "Puma","Denim" or "Nike" brands.
+
+mysql> select * from products where brand='Puma' or brand='Denim' or brand='Nike';
++-------------+----------+-------+-------+--------+
+| name        | category | price | brand | rating |
++-------------+----------+-------+-------+--------+
+| Black Shirt | Clothing |   900 | Puma  |    4.8 |
+| Grey Shorts | Clothing |   499 | Denim |    4.6 |
+| Blue Pant   | Clothing |   699 | Denim |    4.5 |
+| Brown Shirt | Clothing |   799 | Denim |    3.9 |
+| Track Pant  | Clothing |   999 | Puma  |    4.5 |
+| T Shirt     | Clothing |   699 | Puma  |    3.9 |
++-------------+----------+-------+-------+--------+
+6 rows in set (0.00 sec)
+
+6. Get all the details of products whose
+i)brand is "Redmi" with rating greater than 4 or
+ii)products that belong to "OnePlus" brand.
+
+mysql> select * from products where brand='Redmi'and rating>4.0 or brand='OnePlus';
++-------------+----------+-------+---------+--------+
+| name        | category | price | brand   | rating |
++-------------+----------+-------+---------+--------+
+| Nord Buds 2 | Gadgets  |  2999 | OnePlus |    4.5 |
+| Redmi K50i  | Mobile   | 27999 | Redmi   |    4.1 |
++-------------+----------+-------+---------+--------+
+2 rows in set (0.00 sec)
+
+7. Get only cakes from "Cadbury" and "Britannia" brands that have rating greater than 4.0. Consider the products that have "Cake" in name as cakes.
+
+mysql> select * from products where name like '%Cakes';
++-------------------+----------+-------+-----------+--------+
+| name              | category | price | brand     | rating |
++-------------------+----------+-------+-----------+--------+
+| ChocLayered Cakes | Cakes    |   150 | Cadbury   |    4.3 |
+| ChocLayered Cakes | Cakes    |   150 | Cadbury   |    4.3 |
+| Choco Chill Cakes | Cakes    |   200 | Britannia |    4.1 |
++-------------------+----------+-------+-----------+--------+
+3 rows in set (0.00 sec)
+
+8. Get all details of the products from the product tablke whose 
+i)brand is "Puma" and rating greater than 3.5 or
+ii)brand is "Denim" and rating greater than 4.0
+
+
+mysql> select * from products where brand='Puma' and rating>3.5 or brand='Denim' and rating>4.0;
++-------------+----------+-------+-------+--------+
+| name        | category | price | brand | rating |
++-------------+----------+-------+-------+--------+
+| Black Shirt | Clothing |   900 | Puma  |    4.8 |
+| Grey Shorts | Clothing |   499 | Denim |    4.6 |
+| Blue Pant   | Clothing |   699 | Denim |    4.5 |
+| Track Pant  | Clothing |   999 | Puma  |    4.5 |
+| T Shirt     | Clothing |   699 | Puma  |    3.9 |
++-------------+----------+-------+-------+--------+
+5 rows in set (0.00 sec)
+
+9. Get all the shirts available in "Puma","Nike" or "Levis" brands, exculding the black colour shirts.
+Note:
+You can assume that:
+ 1. Products containing "Shirt" in name are considered as Shirts.
+2. Black colour shirts contain "Black" in their names.
+
+mysql> select * from products where name <> 'Black Shirt' and brand='Puma' or brand='Nike';
++-------------+----------+-------+-------+--------+
+| name        | category | price | brand | rating |
++-------------+----------+-------+-------+--------+
+| Track Pant  | Clothing |   999 | Puma  |    4.5 |
+| T Shirt     | Clothing |   699 | Puma  |    3.9 |
+| White Shirt | Clothing |   849 | Nike  |    4.3 |
++-------------+----------+-------+-------+--------+
+3 rows in set (0.01 sec)

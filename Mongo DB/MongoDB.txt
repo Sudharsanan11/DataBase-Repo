@@ -1,0 +1,520 @@
+1.  Write a MongoDB query to display at least 10 details of the documents of  book_id, Btitle, authors in array and price for all the documents in the collection Bookstore.
+ 
+sudharsanan> db.bookstore.find()
+[
+  {
+    _id: ObjectId("64b2783e9d000a4fe70a1f9d"),
+    book_id: 100,
+    btitle: 'Gone with the Wind',
+    Authors: [ 'Margaret Mitchell', 'JOHN STEINBECK' ],
+    Price: 1600
+  },
+  {
+    _id: ObjectId("64b278a09d000a4fe70a1f9e"),
+    book_id: 101,
+    btitle: 'The Grapes of Wrath',
+    Authors: [ 'John Steinbeck', 'JOHN STEINBECK' ],
+    Price: 3000
+  },
+  {
+    _id: ObjectId("64b278c89d000a4fe70a1f9f"),
+    book_id: 102,
+    btitle: 'Great Work of Time',
+    Authors: [ 'John Crowley', 'JOHN STEINBECK' ],
+    Price: 2500
+  },
+  {
+    _id: ObjectId("64b2792e9d000a4fe70a1fa1"),
+    book_id: 103,
+    btitle: 'The Green Bay Tree',
+    Authors: [ 'Louis Bromfield', 'JOHN STEINBECK' ],
+    Price: 1200
+  },
+  {
+    _id: ObjectId("64b2794c9d000a4fe70a1fa2"),
+    book_id: 104,
+    btitle: ' ABSALOM, ABSALOM!',
+    Authors: [ 'WILLIAM FAULKNER', 'Louis Bromfield' ],
+    Price: 500
+  },
+  {
+    _id: ObjectId("64b279669d000a4fe70a1fa3"),
+    book_id: 105,
+    btitle: 'A TIME TO KILL',
+    Authors: [ 'JOHN GRISHAM', 'Louis Bromfield' ],
+    Price: 700
+  },
+  {
+    _id: ObjectId("64b2797e9d000a4fe70a1fa4"),
+    book_id: 106,
+    btitle: 'THE HOUSE OF MIRTH',
+    Authors: [ 'EDITH WHARTON', 'Louis Bromfield' ],
+    Price: 5000
+  },
+  {
+    _id: ObjectId("64b2799a9d000a4fe70a1fa5"),
+    book_id: 107,
+    btitle: 'MongoDB Practice',
+    Authors: [ 'Edward', 'Louis Bromfield' ],
+    Price: 200
+  },
+  {
+    _id: ObjectId("64b279b79d000a4fe70a1fa6"),
+    book_id: 108,
+    btitle: 'EAST OF EDEN',
+    Authors: [ 'JOHN STEINBECK', 'Louis Bromfield' ],
+    Price: 2000
+  },
+  {
+    _id: ObjectId("64b279d79d000a4fe70a1fa7"),
+    book_id: 109,
+    btitle: ' Generating Reference to Visible Objects',
+    Authors: [ 'Margaret Mitchell', 'Louis Bromfield' ],
+    Price: 1000
+  },
+  {
+    _id: ObjectId("64b279ed9d000a4fe70a1fa8"),
+    book_id: 110,
+    btitle: 'Lost Laysen',
+    Authors: [ 'Margaret Mitchell', 'Louis Bromfield' ],
+    Price: 1000
+  }
+]
+
+2. Write a MongoDB query to display the fields Btitle,  authors and price but exclude the bookid for all the documents in the collection Bookstore. 
+
+sudharsanan> db.bookstore.find({},{btitle:1,Authors:1,Price:1,_id:0})
+[
+  {
+    btitle: 'Gone with the Wind',
+    Authors: [ 'Margaret Mitchell', 'JOHN STEINBECK' ],
+    Price: 1600
+  },
+  {
+    btitle: 'The Grapes of Wrath',
+    Authors: [ 'John Steinbeck', 'JOHN STEINBECK' ],
+    Price: 3000
+  },
+  {
+    btitle: 'Great Work of Time',
+    Authors: [ 'John Crowley', 'JOHN STEINBECK' ],
+    Price: 2500
+  },
+  {
+    btitle: 'The Green Bay Tree',
+    Authors: [ 'Louis Bromfield', 'JOHN STEINBECK' ],
+    Price: 1200
+  },
+  {
+    btitle: ' ABSALOM, ABSALOM!',
+    Authors: [ 'WILLIAM FAULKNER', 'Louis Bromfield' ],
+    Price: 500
+  },
+  {
+    btitle: 'A TIME TO KILL',
+    Authors: [ 'JOHN GRISHAM', 'Louis Bromfield' ],
+    Price: 700
+  },
+  {
+    btitle: 'THE HOUSE OF MIRTH',
+    Authors: [ 'EDITH WHARTON', 'Louis Bromfield' ],
+    Price: 5000
+  },
+  {
+    btitle: 'MongoDB Practice',
+    Authors: [ 'Edward', 'Louis Bromfield' ],
+    Price: 200
+  },
+  {
+    btitle: 'EAST OF EDEN',
+    Authors: [ 'JOHN STEINBECK', 'Louis Bromfield' ],
+    Price: 2000
+  },
+  {
+    btitle: ' Generating Reference to Visible Objects',
+    Authors: [ 'Margaret Mitchell', 'Louis Bromfield' ],
+    Price: 1000
+  },
+  {
+    btitle: 'Lost Laysen',
+    Authors: [ 'Margaret Mitchell', 'Louis Bromfield' ],
+    Price: 1000
+  }
+]
+3. Write a MongoDB query to display the first 3 books based on similar authors.
+
+sudharsanan> db.bookstore.find({Authors:'Margaret Mitchell'}).limit(3)
+[
+  {
+    _id: ObjectId("64b2783e9d000a4fe70a1f9d"),
+    book_id: 100,
+    btitle: 'Gone with the Wind',
+    Authors: [ 'Margaret Mitchell', 'JOHN STEINBECK' ],
+    Price: 1600
+  },
+  {
+    _id: ObjectId("64b279d79d000a4fe70a1fa7"),
+    book_id: 109,
+    btitle: ' Generating Reference to Visible Objects',
+    Authors: [ 'Margaret Mitchell', 'Louis Bromfield' ],
+    Price: 1000
+  },
+  {
+    _id: ObjectId("64b279ed9d000a4fe70a1fa8"),
+    book_id: 110,
+    btitle: 'Lost Laysen',
+    Authors: [ 'Margaret Mitchell', 'Louis Bromfield' ],
+    Price: 1000
+  }
+]
+
+4. Write a MongoDB query to find the book price more than 1500. 
+
+
+sudharsanan> db.bookstore.find({Price:{$gt:1500}})
+[
+  {
+    _id: ObjectId("64b2783e9d000a4fe70a1f9d"),
+    book_id: 100,
+    btitle: 'Gone with the Wind',
+    Authors: [ 'Margaret Mitchell', 'JOHN STEINBECK' ],
+    Price: 1600
+  },
+  {
+    _id: ObjectId("64b278a09d000a4fe70a1f9e"),
+    book_id: 101,
+    btitle: 'The Grapes of Wrath',
+    Authors: [ 'John Steinbeck', 'JOHN STEINBECK' ],
+    Price: 3000
+  },
+  {
+    _id: ObjectId("64b278c89d000a4fe70a1f9f"),
+    book_id: 102,
+    btitle: 'Great Work of Time',
+    Authors: [ 'John Crowley', 'JOHN STEINBECK' ],
+    Price: 2500
+  },
+  {
+    _id: ObjectId("64b2797e9d000a4fe70a1fa4"),
+    book_id: 106,
+    btitle: 'THE HOUSE OF MIRTH',
+    Authors: [ 'EDITH WHARTON', 'Louis Bromfield' ],
+    Price: 5000
+  },
+  {
+    _id: ObjectId("64b279b79d000a4fe70a1fa6"),
+    book_id: 108,
+    btitle: 'EAST OF EDEN',
+    Authors: [ 'JOHN STEINBECK', 'Louis Bromfield' ],
+    Price: 2000
+  }
+]
+
+5. Write a MongoDB query to find the book title who's price is  more than 800 but less than 2000.
+
+
+sudharsanan> db.bookstore.find({$and:[{Price:{$gt:800}},{Price:{$lt:2000}}]})
+[
+  {
+    _id: ObjectId("64b2783e9d000a4fe70a1f9d"),
+    book_id: 100,
+    btitle: 'Gone with the Wind',
+    Authors: [ 'Margaret Mitchell', 'JOHN STEINBECK' ],
+    Price: 1600
+  },
+  {
+    _id: ObjectId("64b2792e9d000a4fe70a1fa1"),
+    book_id: 103,
+    btitle: 'The Green Bay Tree',
+    Authors: [ 'Louis Bromfield', 'JOHN STEINBECK' ],
+    Price: 1200
+  },
+  {
+    _id: ObjectId("64b279d79d000a4fe70a1fa7"),
+    book_id: 109,
+    btitle: ' Generating Reference to Visible Objects',
+    Authors: [ 'Margaret Mitchell', 'Louis Bromfield' ],
+    Price: 1000
+  },
+  {
+    _id: ObjectId("64b279ed9d000a4fe70a1fa8"),
+    book_id: 110,
+    btitle: 'Lost Laysen',
+    Authors: [ 'Margaret Mitchell', 'Louis Bromfield' ],
+    Price: 1000
+  }
+]
+6. Write a MongoDB query to arrange the book name of the bookstore in ascending order along with all the columns. 
+
+sudharsanan> db.bookstore.find().sort({btitle:1})
+[
+  {
+    _id: ObjectId("64b2794c9d000a4fe70a1fa2"),
+    book_id: 104,
+    btitle: ' ABSALOM, ABSALOM!',
+    Authors: [ 'WILLIAM FAULKNER', 'Louis Bromfield' ],
+    Price: 500
+  },
+  {
+    _id: ObjectId("64b279d79d000a4fe70a1fa7"),
+    book_id: 109,
+    btitle: ' Generating Reference to Visible Objects',
+    Authors: [ 'Margaret Mitchell', 'Louis Bromfield' ],
+    Price: 1000
+  },
+  {
+    _id: ObjectId("64b279669d000a4fe70a1fa3"),
+    book_id: 105,
+    btitle: 'A TIME TO KILL',
+    Authors: [ 'JOHN GRISHAM', 'Louis Bromfield' ],
+    Price: 700
+  },
+  {
+    _id: ObjectId("64b279b79d000a4fe70a1fa6"),
+    book_id: 108,
+    btitle: 'EAST OF EDEN',
+    Authors: [ 'JOHN STEINBECK', 'Louis Bromfield' ],
+    Price: 2000
+  },
+  {
+    _id: ObjectId("64b2783e9d000a4fe70a1f9d"),
+    book_id: 100,
+    btitle: 'Gone with the Wind',
+    Authors: [ 'Margaret Mitchell', 'JOHN STEINBECK' ],
+    Price: 1600
+  },
+  {
+    _id: ObjectId("64b278c89d000a4fe70a1f9f"),
+    book_id: 102,
+    btitle: 'Great Work of Time',
+    Authors: [ 'John Crowley', 'JOHN STEINBECK' ],
+    Price: 2500
+  },
+  {
+    _id: ObjectId("64b279ed9d000a4fe70a1fa8"),
+    book_id: 110,
+    btitle: 'Lost Laysen',
+    Authors: [ 'Margaret Mitchell', 'Louis Bromfield' ],
+    Price: 1000
+  },
+  {
+    _id: ObjectId("64b2799a9d000a4fe70a1fa5"),
+    book_id: 107,
+    btitle: 'MongoDB Practice',
+    Authors: [ 'Edward', 'Louis Bromfield' ],
+    Price: 200
+  },
+  {
+    _id: ObjectId("64b2797e9d000a4fe70a1fa4"),
+    book_id: 106,
+    btitle: 'THE HOUSE OF MIRTH',
+    Authors: [ 'EDITH WHARTON', 'Louis Bromfield' ],
+    Price: 5000
+  },
+  {
+    _id: ObjectId("64b278a09d000a4fe70a1f9e"),
+    book_id: 101,
+    btitle: 'The Grapes of Wrath',
+    Authors: [ 'John Steinbeck', 'JOHN STEINBECK' ],
+    Price: 3000
+  },
+  {
+    _id: ObjectId("64b2792e9d000a4fe70a1fa1"),
+    book_id: 103,
+    btitle: 'The Green Bay Tree',
+    Authors: [ 'Louis Bromfield', 'JOHN STEINBECK' ],
+    Price: 1200
+  }
+]
+
+7.Write a MongoDB query to arrange the book name of the bookstore in ascending order along with all the columns. 
+
+sudharsanan> db.bookstore.find().sort({btitle:1})
+[
+  {
+    _id: ObjectId("64b2794c9d000a4fe70a1fa2"),
+    book_id: 104,
+    btitle: ' ABSALOM, ABSALOM!',
+    Authors: [ 'WILLIAM FAULKNER', 'Louis Bromfield' ],
+    Price: 500
+  },
+  {
+    _id: ObjectId("64b279d79d000a4fe70a1fa7"),
+    book_id: 109,
+    btitle: ' Generating Reference to Visible Objects',
+    Authors: [ 'Margaret Mitchell', 'Louis Bromfield' ],
+    Price: 1000
+  },
+  {
+    _id: ObjectId("64b279669d000a4fe70a1fa3"),
+    book_id: 105,
+    btitle: 'A TIME TO KILL',
+    Authors: [ 'JOHN GRISHAM', 'Louis Bromfield' ],
+    Price: 700
+  },
+  {
+    _id: ObjectId("64b279b79d000a4fe70a1fa6"),
+    book_id: 108,
+    btitle: 'EAST OF EDEN',
+    Authors: [ 'JOHN STEINBECK', 'Louis Bromfield' ],
+    Price: 2000
+  },
+  {
+    _id: ObjectId("64b2783e9d000a4fe70a1f9d"),
+    book_id: 100,
+    btitle: 'Gone with the Wind',
+    Authors: [ 'Margaret Mitchell', 'JOHN STEINBECK' ],
+    Price: 1600
+  },
+  {
+    _id: ObjectId("64b278c89d000a4fe70a1f9f"),
+    book_id: 102,
+    btitle: 'Great Work of Time',
+    Authors: [ 'John Crowley', 'JOHN STEINBECK' ],
+    Price: 2500
+  },
+  {
+    _id: ObjectId("64b279ed9d000a4fe70a1fa8"),
+    book_id: 110,
+    btitle: 'Lost Laysen',
+    Authors: [ 'Margaret Mitchell', 'Louis Bromfield' ],
+    Price: 1000
+  },
+  {
+    _id: ObjectId("64b2799a9d000a4fe70a1fa5"),
+    book_id: 107,
+    btitle: 'MongoDB Practice',
+    Authors: [ 'Edward', 'Louis Bromfield' ],
+    Price: 200
+  },
+  {
+    _id: ObjectId("64b2797e9d000a4fe70a1fa4"),
+    book_id: 106,
+    btitle: 'THE HOUSE OF MIRTH',
+    Authors: [ 'EDITH WHARTON', 'Louis Bromfield' ],
+    Price: 5000
+  },
+  {
+    _id: ObjectId("64b278a09d000a4fe70a1f9e"),
+    book_id: 101,
+    btitle: 'The Grapes of Wrath',
+    Authors: [ 'John Steinbeck', 'JOHN STEINBECK' ],
+    Price: 3000
+  },
+  {
+    _id: ObjectId("64b2792e9d000a4fe70a1fa1"),
+    book_id: 103,
+    btitle: 'The Green Bay Tree',
+    Authors: [ 'Louis Bromfield', 'JOHN STEINBECK' ],
+    Price: 1200
+  }
+]
+
+8. Write a MongoDB query to know whether the author in the authors list.
+sudharsanan> db.bookstore.find({Authors:{$in:[ 'Michael Widenius', 'Luke Welling', 'Edward', 'EDITH WHARTON']}},{btitle:1,Authors:1,_id:0})
+[
+  {
+    btitle: 'THE HOUSE OF MIRTH',
+    Authors: [ 'EDITH WHARTON', 'Louis Bromfield' ]
+  },
+  {
+    btitle: 'MongoDB Practice',
+    Authors: [ 'Edward', 'EDITH WHARTON' ]
+  },
+  { btitle: 'MySql', Authors: [ 'Michael Widenius', 'Luke Welling' ] }
+]
+9.Write a MongoDB query to update & increase the book price Rs.500 in all book name as "MongoDB Practice".
+
+sudharsanan> db.bookstore.update({btitle:'MongoDB Practice'},{$inc:{Price:500}})
+DeprecationWarning: Collection.update() is deprecated. Use updateOne, updateMany, or bulkWrite.
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+sudharsanan> db.bookstore.find({btitle:'MongoDB Practice'});
+[
+  {
+    _id: ObjectId("64b2799a9d000a4fe70a1fa5"),
+    book_id: 107,
+    btitle: 'MongoDB Practice',
+    Authors: [ 'Edward', 'Louis Bromfield' ],
+    Price: 700
+  }
+]
+
+10. Write a MongoDB query to use Update modifiers ($set, $push,  $pull, $upsert) in bookstore.
+
+sudharsanan> db.bookstore.update({btitle:'MongoDB Practice'},{$set:{Price:500}})
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+sudharsanan> db.bookstore.find({btitle:'MongoDB Practice'});
+[
+  {
+    _id: ObjectId("64b2799a9d000a4fe70a1fa5"),
+    book_id: 107,
+    btitle: 'MongoDB Practice',
+    Authors: [ 'Edward', 'Louis Bromfield' ],
+    Price: 500
+  }
+sudharsanan> db.bookstore.update({btitle:'MongoDB Practice'},{$push:{Authors:'EDITH WHARTON'}});
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+sudharsanan> db.bookstore.find({btitle:'MongoDB Practice'});
+[
+  {
+    _id: ObjectId("64b2799a9d000a4fe70a1fa5"),
+    book_id: 107,
+    btitle: 'MongoDB Practice',
+    Authors: [ 'Edward', 'Louis Bromfield', 'EDITH WHARTON' ],
+    Price: 500
+  }
+]
+sudharsanan> db.bookstore.update({btitle:'MongoDB Practice'},{$pull:{Authors:'Louis Bromfield'}});
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+sudharsanan> db.bookstore.find({btitle:'MongoDB Practice'});
+[
+  {
+    _id: ObjectId("64b2799a9d000a4fe70a1fa5"),
+    book_id: 107,
+    btitle: 'MongoDB Practice',
+    Authors: [ 'Edward', 'EDITH WHARTON' ],
+    Price: 500
+  }
+]
+sudharsanan> db.bookstore.updateOne({btitle:'MySql'},{$set:{book_id:12,btitle:'MySql',Authors:['Michael Widenius','Luke Welling'],Price:900}},{upsert:true});
+{
+  acknowledged: true,
+  insertedId: ObjectId("64b28346b08fc1249d9fe224"),
+  matchedCount: 0,
+  modifiedCount: 0,
+  upsertedCount: 1
+}
+sudharsanan> db.bookstore.find({btitle:'MySql'});
+[
+  {
+    _id: ObjectId("64b28346b08fc1249d9fe224"),
+    btitle: 'MySql',
+    Authors: [ 'Michael Widenius', 'Luke Welling' ],
+    Price: 900,
+    book_id: 12
+  }
+]
